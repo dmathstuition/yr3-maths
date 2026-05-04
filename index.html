@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>3-D Shapes Assignment — Whyte Pyramid Academy</title>
+<title>Time Measurement Assignment — Whyte Pyramid Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 /* ─── RESET & VARIABLES ─────────────────────────────────────── */
@@ -17,14 +17,6 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh;overflow-x:hidden}
-
-/* ─── BACKGROUNDS ───────────────────────────────────────────── */
-.bg-dots{
-  background-color:var(--offwhite);
-  background-image:radial-gradient(var(--navy) 1px,transparent 1px);
-  background-size:28px 28px;
-  background-attachment:fixed;
-}
 
 /* ─── SCREENS ───────────────────────────────────────────────── */
 .screen{display:none;min-height:100vh;padding:1.5rem}
@@ -53,34 +45,18 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
 
 .welcome-shapes-row{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin:.4rem 0}
 
-/* CSS 3D Shape art */
-.shape-art{width:72px;height:72px;display:flex;align-items:center;justify-content:center;position:relative}
-.shape-art.cube{
-  background:linear-gradient(135deg,#F47920,#f9a55b);
-  clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
-  border-radius:4px;
-  animation:float1 3s ease-in-out infinite;
+/* CSS clock art pieces */
+.clock-art{
+  width:72px;height:72px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;position:relative;
 }
-.shape-art.sphere{
-  background:radial-gradient(circle at 35% 35%,#60d8e8,#007878);
-  border-radius:50%;animation:float2 3.4s ease-in-out infinite;
-}
-.shape-art.pyramid{
-  width:0;height:0;background:none;
-  border-left:36px solid transparent;border-right:36px solid transparent;
-  border-bottom:72px solid #D61680;
-  animation:float3 2.8s ease-in-out infinite;
-}
-.shape-art.cylinder{
-  background:linear-gradient(135deg,#5A1A85,#9b59b6);
-  border-radius:50px;animation:float1 3.2s ease-in-out infinite;
-}
-.shape-art.cone{
-  width:0;height:0;background:none;
-  border-left:30px solid transparent;border-right:30px solid transparent;
-  border-bottom:60px solid var(--gold);
-  animation:float2 3.6s ease-in-out infinite;
-}
+.clock-art.c1{background:linear-gradient(135deg,#F47920,#f9a55b);animation:float1 3s ease-in-out infinite}
+.clock-art.c2{background:radial-gradient(circle at 35% 35%,#60d8e8,#007878);animation:float2 3.4s ease-in-out infinite}
+.clock-art.c3{background:linear-gradient(135deg,#D61680,#e91e9a);animation:float3 2.8s ease-in-out infinite}
+.clock-art.c4{background:linear-gradient(135deg,#5A1A85,#9b59b6);animation:float1 3.2s ease-in-out infinite}
+.clock-art.c5{background:linear-gradient(135deg,var(--gold),#f9d56e);animation:float2 3.6s ease-in-out infinite}
+.clock-art svg{width:52px;height:52px}
+
 @keyframes float1{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(3deg)}}
 @keyframes float2{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12px) scale(1.05)}}
 @keyframes float3{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(-3deg)}}
@@ -185,9 +161,16 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
 
 .q-text{
   font-size:1.22rem;font-weight:800;color:var(--dark);line-height:1.45;
-  margin-bottom:1.5rem;font-family:'Baloo 2',cursive;
+  margin-bottom:1rem;font-family:'Baloo 2',cursive;
 }
 .q-text em{color:var(--orange);font-style:normal}
+
+/* Clock display area */
+.clock-display{display:flex;justify-content:center;margin-bottom:1.3rem}
+.clock-display svg{
+  width:180px;height:180px;
+  filter:drop-shadow(0 4px 12px rgba(27,43,107,.15));
+}
 
 /* ─── OPTIONS ───────────────────────────────────────────────── */
 .options-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
@@ -222,10 +205,6 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
 .option-btn.show-correct{background:linear-gradient(135deg,#d4f5e2,#e6fef0);border-color:var(--green)}
 .option-btn.show-correct .opt-letter{background:var(--green);color:#fff}
 .option-btn:disabled{cursor:default}
-
-/* Ripple */
-.option-btn::after{content:'';position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0;transition:opacity .2s}
-.option-btn:active::after{opacity:.05}
 
 /* ─── FEEDBACK BANNER ───────────────────────────────────────── */
 .feedback-banner{
@@ -293,9 +272,6 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   border:5px solid rgba(255,255,255,.3);position:relative;
 }
-.score-circle::before{
-  content:'';position:absolute;inset:4px;border-radius:50%;
-}
 .score-circle.grade-a{background:radial-gradient(circle,#1A7D42,#28a05b)}
 .score-circle.grade-b{background:radial-gradient(circle,#007878,#0abfbc)}
 .score-circle.grade-c{background:radial-gradient(circle,var(--gold),#f9a55b)}
@@ -353,12 +329,14 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
 .btn-retake{background:rgba(255,255,255,.12);color:#fff;border:2px solid rgba(255,255,255,.3)}
 .btn-retake:hover{background:rgba(255,255,255,.2)}
 
-/* ─── PRINT / CORRECTIONS ───────────────────────────────────── */
-@media print{
-  body>*{display:none!important}
-  #print-area{display:block!important;position:static!important}
+/* ─── GAS STATUS ────────────────────────────────────────────── */
+.gas-status{
+  font-size:.82rem;font-weight:700;padding:.4rem .9rem;border-radius:30px;
+  display:inline-flex;align-items:center;gap:.4rem;margin-top:.3rem;
 }
-#print-area{display:none}
+.gas-status.sending{background:rgba(245,166,35,.2);color:#F5A623}
+.gas-status.success{background:rgba(26,125,66,.2);color:#1A7D42}
+.gas-status.error{background:rgba(214,22,128,.2);color:#D61680}
 
 /* ─── LOADING ANIM ──────────────────────────────────────────── */
 .loading-overlay{
@@ -368,11 +346,11 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
 }
 .loading-overlay.fade-out{opacity:0;pointer-events:none}
 .loading-shapes{display:flex;gap:1.4rem}
-.ls{width:50px;height:50px;border-radius:12px;animation:ls-bounce .8s ease-in-out infinite}
-.ls:nth-child(1){background:var(--orange);animation-delay:0s}
-.ls:nth-child(2){background:var(--teal);border-radius:50%;animation-delay:.1s}
-.ls:nth-child(3){width:0;height:0;background:none;border-left:25px solid transparent;border-right:25px solid transparent;border-bottom:50px solid var(--pink);animation-delay:.2s}
-@keyframes ls-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+.ls{width:50px;height:50px;border-radius:50%;border:5px solid rgba(255,255,255,.3);border-top-color:var(--gold);animation:ls-spin .8s linear infinite}
+.ls:nth-child(1){border-top-color:var(--orange);animation-duration:.7s}
+.ls:nth-child(2){border-top-color:var(--teal);animation-duration:.9s}
+.ls:nth-child(3){border-top-color:var(--pink);animation-duration:1.1s}
+@keyframes ls-spin{to{transform:rotate(360deg)}}
 .loading-text{color:rgba(255,255,255,.7);font-weight:700;font-size:1rem;font-family:'Baloo 2',cursive}
 
 /* ─── SCROLLBAR ─────────────────────────────────────────────── */
@@ -387,6 +365,7 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
   .options-grid{grid-template-columns:1fr}
   .info-cards{gap:.7rem}
   .info-card{min-width:100px}
+  .clock-display svg{width:150px;height:150px}
 }
 </style>
 </head>
@@ -399,7 +378,7 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
     <div class="ls"></div>
     <div class="ls"></div>
   </div>
-  <div class="loading-text">Loading your 3-D Shapes Adventure… 🚀</div>
+  <div class="loading-text">Getting your clocks ready… 🕐</div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════ -->
@@ -414,16 +393,10 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
 
     <div class="wpa-badge">🎓 Whyte Pyramid Academy — Year 3 Mathematics</div>
 
-    <div class="welcome-shapes-row">
-      <div class="shape-art cube" title="Cube"></div>
-      <div class="shape-art sphere" title="Sphere"></div>
-      <div class="shape-art pyramid" title="Pyramid"></div>
-      <div class="shape-art cylinder" title="Cylinder"></div>
-      <div class="shape-art cone" title="Cone"></div>
-    </div>
+    <div class="welcome-shapes-row" id="welcome-clocks"></div>
 
-    <h1 class="welcome-title">3-D Shapes<br/><span>Assignment! 🧊</span></h1>
-    <p class="welcome-sub">Explore the amazing world of 3-D shapes!<br/>Answer all 15 questions — then download your corrections. 🌟</p>
+    <h1 class="welcome-title">Time<br/><span>Measurement! 🕐</span></h1>
+    <p class="welcome-sub">Can you read clocks and tell the time?<br/>Answer all 15 questions — then download your corrections. 🌟</p>
 
     <div class="info-cards">
       <div class="info-card">
@@ -458,7 +431,7 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
     </button>
 
     <p style="color:rgba(255,255,255,.45);font-size:.82rem;font-weight:600;margin-top:-.4rem">
-      Read each question carefully and choose the best answer ✅
+      Read each question carefully and look at the clocks! ✅
     </p>
   </div>
 </div>
@@ -470,7 +443,7 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
   <div class="quiz-header">
     <div>
       <div class="qh-school">WHYTE PYRAMID ACADEMY</div>
-      <div class="qh-title">3-D Shapes Assignment 🧊</div>
+      <div class="qh-title">Time Measurement 🕐</div>
     </div>
     <div class="timer-chip" id="timer-display">⏱ 20:00</div>
   </div>
@@ -485,9 +458,7 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
   </div>
 
   <div class="q-card-wrap">
-    <div class="q-card" id="q-card">
-      <!-- Injected by JS -->
-    </div>
+    <div class="q-card" id="q-card"></div>
   </div>
 </div>
 
@@ -500,94 +471,189 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
     <div class="rh-logo">🎓 Whyte Pyramid Academy — Year 3 Maths</div>
     <div class="rh-date" id="result-date"></div>
   </div>
-  <div class="results-inner" id="results-inner">
-    <!-- Injected by JS -->
-  </div>
+  <div class="results-inner" id="results-inner"></div>
 </div>
-
-<!-- CORRECTIONS PRINT AREA (hidden, for download) -->
-<div id="print-area"></div>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!--  JAVASCRIPT                                              -->
 <!-- ══════════════════════════════════════════════════════════ -->
 <script>
+// ╔════════════════════════════════════════════════════════════╗
+// ║  GOOGLE APPS SCRIPT CONFIG                                ║
+// ║  Deploy your doPost GAS web app and paste the URL below.  ║
+// ╚════════════════════════════════════════════════════════════╝
+const GAS_URL = 'YOUR_GAS_WEB_APP_URL_HERE';
+// e.g. 'https://script.google.com/macros/s/AKfycb.../exec'
+
+// ─── SVG CLOCK GENERATOR ─────────────────────────────────────
+function makeClock(hour, minute, size = 180, id = '') {
+  const h = hour % 12;
+  const mAngle = (minute / 60) * 360;
+  const hAngle = (h / 12) * 360 + (minute / 60) * 30;
+  const r = size / 2;
+  const cx = r, cy = r;
+
+  // Tick marks
+  let ticks = '';
+  for (let i = 0; i < 12; i++) {
+    const angle = (i / 12) * 360 - 90;
+    const rad = angle * Math.PI / 180;
+    const inner = i % 3 === 0 ? r * 0.72 : r * 0.78;
+    const outer = r * 0.88;
+    const x1 = cx + inner * Math.cos(rad);
+    const y1 = cy + inner * Math.sin(rad);
+    const x2 = cx + outer * Math.cos(rad);
+    const y2 = cy + outer * Math.sin(rad);
+    const sw = i % 3 === 0 ? 3 : 1.5;
+    ticks += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#1B2B6B" stroke-width="${sw}" stroke-linecap="round"/>`;
+  }
+
+  // Numbers
+  let nums = '';
+  for (let i = 1; i <= 12; i++) {
+    const angle = (i / 12) * 360 - 90;
+    const rad = angle * Math.PI / 180;
+    const nr = r * 0.62;
+    const nx = cx + nr * Math.cos(rad);
+    const ny = cy + nr * Math.sin(rad);
+    nums += `<text x="${nx}" y="${ny}" text-anchor="middle" dominant-baseline="central" font-family="'Baloo 2',cursive" font-weight="800" font-size="${size * 0.11}" fill="#1B2B6B">${i}</text>`;
+  }
+
+  // Hour hand
+  const hRad = (hAngle - 90) * Math.PI / 180;
+  const hLen = r * 0.45;
+  const hx = cx + hLen * Math.cos(hRad);
+  const hy = cy + hLen * Math.sin(hRad);
+
+  // Minute hand
+  const mRad = (mAngle - 90) * Math.PI / 180;
+  const mLen = r * 0.65;
+  const mx = cx + mLen * Math.cos(mRad);
+  const my = cy + mLen * Math.sin(mRad);
+
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg" ${id ? `id="${id}"` : ''}>
+    <!-- Face -->
+    <circle cx="${cx}" cy="${cy}" r="${r - 2}" fill="#FFFFFF" stroke="#1B2B6B" stroke-width="4"/>
+    <circle cx="${cx}" cy="${cy}" r="${r - 8}" fill="none" stroke="#EEF2FF" stroke-width="2"/>
+    ${ticks}
+    ${nums}
+    <!-- Hour hand -->
+    <line x1="${cx}" y1="${cy}" x2="${hx}" y2="${hy}" stroke="#1B2B6B" stroke-width="${size * 0.038}" stroke-linecap="round"/>
+    <!-- Minute hand -->
+    <line x1="${cx}" y1="${cy}" x2="${mx}" y2="${my}" stroke="#F47920" stroke-width="${size * 0.025}" stroke-linecap="round"/>
+    <!-- Centre dot -->
+    <circle cx="${cx}" cy="${cy}" r="${size * 0.032}" fill="#D61680"/>
+  </svg>`;
+}
+
+// Mini clock for welcome screen
+function makeWelcomeClock(hour, minute, className) {
+  return `<div class="clock-art ${className}">${makeClock(hour, minute, 52)}</div>`;
+}
+
+// Populate welcome clocks
+document.getElementById('welcome-clocks').innerHTML =
+  makeWelcomeClock(3, 0, 'c1') +
+  makeWelcomeClock(6, 30, 'c2') +
+  makeWelcomeClock(9, 15, 'c3') +
+  makeWelcomeClock(12, 0, 'c4') +
+  makeWelcomeClock(4, 45, 'c5');
+
 // ─── QUESTIONS DATA ──────────────────────────────────────────
+// clock: [hour, minute] — if present, an SVG clock is rendered
 const QUESTIONS = [
   {
-    q: "How many <em>faces</em> does a CUBE have?",
-    icon:"🎲",opts:["4","6","8","12"],ans:1,
-    expl:"A cube has 6 faces — they are all the same size and shape (squares)! Think of a dice."
+    q: "What time does this clock show?",
+    icon: "🕐", clock: [3, 0],
+    opts: ["3 o'clock", "12 o'clock", "6 o'clock", "9 o'clock"], ans: 0,
+    expl: "The minute hand points to 12 and the hour hand points to 3 — that means it is 3 o'clock!"
   },
   {
-    q: "What shape are the faces of a <em>CUBE</em>?",
-    icon:"🧊",opts:["Circles","Triangles","Rectangles","Squares"],ans:3,
-    expl:"All 6 faces of a cube are squares — equal length, equal width. That's what makes it special!"
+    q: "What time does this clock show?",
+    icon: "🕕", clock: [6, 30],
+    opts: ["6 o'clock", "Half past 12", "Half past 6", "Quarter past 6"], ans: 2,
+    expl: "The minute hand is on 6 (pointing down) which means 'half past'. The hour hand is between 6 and 7, so it is half past 6."
   },
   {
-    q: "Which 3-D shape looks <em>exactly like a ball</em>?",
-    icon:"⚽",opts:["Cube","Cuboid","Sphere","Cylinder"],ans:2,
-    expl:"A sphere is perfectly round — like a football, orange or the Earth! It has no edges or corners."
+    q: "What time does this clock show?",
+    icon: "🕘", clock: [9, 15],
+    opts: ["Quarter to 9", "9 o'clock", "Quarter past 9", "Quarter past 3"], ans: 2,
+    expl: "The minute hand is on 3, which means 'quarter past'. The hour hand is just past 9, so it is quarter past 9."
   },
   {
-    q: "A tin of beans is shaped like which <em>3-D shape</em>?",
-    icon:"🥫",opts:["Sphere","Cuboid","Pyramid","Cylinder"],ans:3,
-    expl:"A cylinder has 2 circular flat faces (top and bottom) and 1 curved face around the side — just like a tin can!"
+    q: "What time does this clock show?",
+    icon: "🕐", clock: [2, 45],
+    opts: ["Quarter past 2", "Quarter to 2", "Quarter to 3", "Half past 2"], ans: 2,
+    expl: "The minute hand is on 9, which means 'quarter to' the next hour. The hour hand is near 3, so it is quarter to 3."
   },
   {
-    q: "How many <em>edges</em> does a CUBE have?",
-    icon:"📦",opts:["6","8","10","12"],ans:3,
-    expl:"A cube has 12 edges — 4 on the top face, 4 on the bottom face, and 4 vertical edges connecting them."
+    q: "What time does this clock show?",
+    icon: "🕔", clock: [5, 10],
+    opts: ["10 past 5", "5 past 10", "10 past 2", "50 minutes past 5"], ans: 0,
+    expl: "The minute hand is on 2, which means 10 minutes past. The hour hand is just past 5, so it is 10 minutes past 5."
   },
   {
-    q: "How many <em>vertices</em> (corners) does a CUBE have?",
-    icon:"🎲",opts:["4","6","8","10"],ans:2,
-    expl:"A cube has 8 vertices — one at each corner. Vertices are the points where edges meet!"
+    q: "What time does this clock show?",
+    icon: "🕖", clock: [7, 35],
+    opts: ["7 o'clock", "25 to 7", "25 to 8", "35 past 7"], ans: 2,
+    expl: "The minute hand is on 7, which is 35 minutes past — or 25 minutes to the next hour. The hour hand is between 7 and 8, so it is 25 to 8."
   },
   {
-    q: "Which 3-D shape has <em>NO edges and NO vertices</em> at all?",
-    icon:"⭕",opts:["Cone","Cylinder","Sphere","Pyramid"],ans:2,
-    expl:"A sphere has no edges and no vertices because it is perfectly smooth and round all over!"
+    q: "How many <em>minutes</em> are in one hour?",
+    icon: "⏰", clock: null,
+    opts: ["30 minutes", "60 minutes", "100 minutes", "45 minutes"], ans: 1,
+    expl: "There are always 60 minutes in 1 hour. That's why the minute hand goes all the way around the clock in 60 minutes!"
   },
   {
-    q: "Which 3-D shape has a <em>circular base</em> that narrows to a single point?",
-    icon:"🍦",opts:["Cylinder","Sphere","Cuboid","Cone"],ans:3,
-    expl:"A cone has a circular base, a curved surface, and one vertex (point) at the top — like an ice cream cone!"
+    q: "How many <em>hours</em> are in one full day?",
+    icon: "📅", clock: null,
+    opts: ["12 hours", "20 hours", "24 hours", "36 hours"], ans: 2,
+    expl: "One full day has 24 hours — 12 hours of AM (morning) and 12 hours of PM (afternoon and night)."
   },
   {
-    q: "How many faces does a <em>CYLINDER</em> have in total?",
-    icon:"🥤",opts:["1","2","3","4"],ans:2,
-    expl:"A cylinder has 3 faces — 2 flat circular faces (top and bottom) and 1 curved face all around the side."
+    q: "The clock shows <em>4:20</em>. How many minutes past 4 is that?",
+    icon: "🕟", clock: [4, 20],
+    opts: ["10 minutes", "15 minutes", "20 minutes", "25 minutes"], ans: 2,
+    expl: "The minute hand is on 4, which means 20 minutes past. Each number on the clock face is worth 5 minutes: 4 × 5 = 20."
   },
   {
-    q: "How many <em>faces</em> does a CUBOID have?",
-    icon:"📦",opts:["4","6","8","10"],ans:1,
-    expl:"A cuboid has 6 faces. Unlike a cube, the faces of a cuboid can be rectangles of different sizes — like a shoe box!"
+    q: "A lesson starts at <em>10 o'clock</em> and lasts <em>45 minutes</em>. What time does it end?",
+    icon: "🏫", clock: [10, 0],
+    opts: ["Quarter past 10", "Half past 10", "Quarter to 11", "11 o'clock"], ans: 2,
+    expl: "Starting at 10:00 and adding 45 minutes gives us 10:45 — that is quarter to 11!"
   },
   {
-    q: "A dice is shaped like a ___?",
-    icon:"🎲",opts:["Cuboid","Sphere","Cube","Pyramid"],ans:2,
-    expl:"A dice is a cube — all 6 faces are equal squares and all edges are the same length. "
+    q: "Which is the <em>correct digital time</em> for the clock shown?",
+    icon: "📱", clock: [8, 5],
+    opts: ["8:50", "8:05", "1:40", "5:08"], ans: 1,
+    expl: "The hour hand is on 8 and the minute hand is on 1 (which means 5 minutes). The digital time is 8:05. Remember to write 05 not just 5!"
   },
   {
-    q: "How many <em>vertices</em> does a SQUARE-BASED PYRAMID have?",
-    icon:"🔺",opts:["4","5","6","8"],ans:1,
-    expl:"A square-based pyramid has 5 vertices — 4 at the corners of the square base and 1 at the very top (apex)."
+    q: "How many <em>seconds</em> are in one minute?",
+    icon: "⏱️", clock: null,
+    opts: ["30 seconds", "60 seconds", "100 seconds", "90 seconds"], ans: 1,
+    expl: "There are 60 seconds in 1 minute, and 60 minutes in 1 hour. Count 'one-Mississippi' 60 times and a whole minute has passed!"
   },
   {
-    q: "A shape has <em>5 faces, 8 edges and 5 vertices</em>. What is it?",
-    icon:"🏔️",opts:["Triangular Prism","Cone","Square-based Pyramid","Cuboid"],ans:2,
-    expl:"A square-based pyramid has exactly 5 faces (1 square base + 4 triangular sides), 8 edges and 5 vertices!"
+    q: "If the time is <em>quarter past 2</em>, which clock shows this correctly?",
+    icon: "🔎", clock: null,
+    clockOptions: true,
+    opts: ["Clock A", "Clock B", "Clock C", "Clock D"],
+    clockData: [[2, 15], [2, 45], [3, 15], [2, 30]],
+    ans: 0,
+    expl: "Quarter past 2 means the minute hand is on 3 (15 minutes) and the hour hand is just past 2. That is clock A!"
   },
   {
-    q: "How many <em>flat faces</em> does a CONE have?",
-    icon:"🍦",opts:["0","1","2","3"],ans:1,
-    expl:"A cone has exactly 1 flat face — the circular base. The slanted side is a curved surface, not a flat face."
+    q: "Aisha eats lunch at <em>12:30</em>. She finishes at <em>1:00</em>. How long was her lunch?",
+    icon: "🍽️", clock: null,
+    opts: ["15 minutes", "30 minutes", "45 minutes", "1 hour"], ans: 1,
+    expl: "From 12:30 to 1:00 is 30 minutes — that's half an hour. The minute hand moves from 6 back to 12."
   },
   {
-    q: "A TRIANGULAR PRISM has how many <em>edges</em>?",
-    icon:"📐",opts:["6","8","9","12"],ans:2,
-    expl:"A triangular prism has 9 edges — 3 on the top triangle, 3 on the bottom triangle, and 3 edges connecting them."
+    q: "What time does this clock show?",
+    icon: "🕛", clock: [12, 0],
+    opts: ["6 o'clock", "12 o'clock", "3 o'clock", "9 o'clock"], ans: 1,
+    expl: "Both the hour hand and the minute hand are pointing to 12. That means it is exactly 12 o'clock!"
   }
 ];
 
@@ -595,7 +661,7 @@ const QUESTIONS = [
 let studentName = '';
 let current = 0;
 let score = 0;
-let answers = new Array(QUESTIONS.length).fill(null); // null = unanswered
+let answers = new Array(QUESTIONS.length).fill(null);
 let answered = false;
 let timer, timeLeft = 20 * 60;
 let startTime;
@@ -612,6 +678,7 @@ window.addEventListener('load', () => {
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
 }
 
 // ─── START QUIZ ──────────────────────────────────────────────
@@ -629,7 +696,7 @@ function startQuiz() {
   startTimer();
 }
 
-// ─── DOTS ─────────────────────────────────────────────────────
+// ─── DOTS ────────────────────────────────────────────────────
 function buildDots() {
   const row = document.getElementById('dots-row');
   row.innerHTML = '';
@@ -643,7 +710,7 @@ function buildDots() {
 
 function updateDot(idx, state) {
   const d = document.getElementById(`dot-${idx}`);
-  if (d) { d.className = 'dot ' + state; }
+  if (d) d.className = 'dot ' + state;
 }
 
 // ─── TIMER ───────────────────────────────────────────────────
@@ -666,44 +733,56 @@ function autoFinish() { showResults(); }
 function renderQuestion() {
   answered = false;
   const q = QUESTIONS[current];
-  const letters = ['A','B','C','D'];
+  const letters = ['A', 'B', 'C', 'D'];
   const pct = (current / QUESTIONS.length) * 100;
 
   document.getElementById('prog-label').textContent = `Question ${current + 1} of ${QUESTIONS.length}`;
   document.getElementById('prog-frac').textContent = `${current} / ${QUESTIONS.length}`;
   document.getElementById('prog-fill').style.width = pct + '%';
 
-  // Update dots
   for (let i = 0; i < QUESTIONS.length; i++) {
-    if (i < current) {
-      updateDot(i, answers[i] === QUESTIONS[i].ans ? 'done-correct' : 'done-wrong');
-    } else if (i === current) {
-      updateDot(i, 'current');
-    } else {
-      document.getElementById(`dot-${i}`).className = 'dot';
-    }
+    if (i < current) updateDot(i, answers[i] === QUESTIONS[i].ans ? 'done-correct' : 'done-wrong');
+    else if (i === current) updateDot(i, 'current');
+    else document.getElementById(`dot-${i}`).className = 'dot';
+  }
+
+  // Build clock HTML
+  let clockHTML = '';
+  if (q.clock) {
+    clockHTML = `<div class="clock-display">${makeClock(q.clock[0], q.clock[1])}</div>`;
+  }
+
+  // Special: clock options (Q13-style)
+  let optionsHTML = '';
+  if (q.clockOptions) {
+    optionsHTML = q.opts.map((opt, i) => `
+      <button class="option-btn" id="opt-${i}" onclick="selectOption(${i})" style="flex-direction:column;align-items:center;padding:1rem .6rem">
+        <div style="margin-bottom:.4rem">${makeClock(q.clockData[i][0], q.clockData[i][1], 90)}</div>
+        <div class="opt-letter" style="width:auto;padding:0 .6rem;height:28px;font-size:.85rem">${letters[i]}</div>
+      </button>
+    `).join('');
+  } else {
+    optionsHTML = q.opts.map((opt, i) => `
+      <button class="option-btn" id="opt-${i}" onclick="selectOption(${i})">
+        <div class="opt-letter">${letters[i]}</div>
+        <div class="opt-text">${opt}</div>
+      </button>
+    `).join('');
   }
 
   const card = document.getElementById('q-card');
   card.innerHTML = `
     <div class="q-meta">
       <span class="q-num-badge">Q${current + 1}</span>
-      <span class="q-topic">3-D Shapes</span>
+      <span class="q-topic">Time</span>
       <span class="q-shape-icon">${q.icon}</span>
     </div>
     <div class="q-text">${q.q}</div>
-    <div class="options-grid" id="opts">
-      ${q.opts.map((opt, i) => `
-        <button class="option-btn" id="opt-${i}" onclick="selectOption(${i})">
-          <div class="opt-letter">${letters[i]}</div>
-          <div class="opt-text">${opt}</div>
-        </button>
-      `).join('')}
-    </div>
+    ${clockHTML}
+    <div class="options-grid" id="opts">${optionsHTML}</div>
     <div id="feedback-slot"></div>
     <div id="next-slot"></div>
   `;
-  // Animate card
   card.style.animation = 'none';
   card.offsetHeight;
   card.style.animation = '';
@@ -718,7 +797,6 @@ function selectOption(idx) {
   answers[current] = idx;
   if (isCorrect) score++;
 
-  // Disable all buttons
   for (let i = 0; i < 4; i++) {
     const btn = document.getElementById(`opt-${i}`);
     btn.disabled = true;
@@ -727,9 +805,7 @@ function selectOption(idx) {
     else if (i === q.ans) btn.classList.add('show-correct');
   }
 
-  // Feedback
-  const fb = document.getElementById('feedback-slot');
-  fb.innerHTML = `
+  document.getElementById('feedback-slot').innerHTML = `
     <div class="feedback-banner ${isCorrect ? 'correct' : 'wrong'}">
       <div class="fb-icon">${isCorrect ? '🎉' : '💡'}</div>
       <div class="fb-body">
@@ -739,10 +815,8 @@ function selectOption(idx) {
     </div>
   `;
 
-  // Next button
-  const ns = document.getElementById('next-slot');
   const isLast = current === QUESTIONS.length - 1;
-  ns.innerHTML = `
+  document.getElementById('next-slot').innerHTML = `
     <div class="btn-next-wrap">
       <button class="btn-next ${isLast ? 'last' : ''}" onclick="nextQuestion()">
         ${isLast ? '🏁 See My Results!' : 'Next Question ➡️'}
@@ -750,7 +824,6 @@ function selectOption(idx) {
     </div>
   `;
 
-  // Update dot
   updateDot(current, isCorrect ? 'done-correct' : 'done-wrong');
 }
 
@@ -765,19 +838,39 @@ function nextQuestion() {
   }
 }
 
+// ─── SEND TO GOOGLE SHEETS ──────────────────────────────────
+async function sendToGoogleSheets(payload) {
+  if (!GAS_URL || GAS_URL === 'YOUR_GAS_WEB_APP_URL_HERE') {
+    console.warn('GAS URL not configured — skipping sheet submission.');
+    return { ok: false, reason: 'not_configured' };
+  }
+  try {
+    const res = await fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    // no-cors gives opaque response — we assume success
+    return { ok: true };
+  } catch (err) {
+    console.error('GAS submission error:', err);
+    return { ok: false, reason: err.message };
+  }
+}
+
 // ─── RESULTS ─────────────────────────────────────────────────
-function showResults() {
+async function showResults() {
   clearInterval(timer);
   showScreen('screen-results');
 
   const pct = Math.round((score / QUESTIONS.length) * 100);
   const timeTaken = Math.round((new Date() - startTime) / 1000);
-  const mm = String(Math.floor(timeTaken / 60)).padStart(2,'0');
-  const ss = String(timeTaken % 60).padStart(2,'0');
+  const mm = String(Math.floor(timeTaken / 60)).padStart(2, '0');
+  const ss = String(timeTaken % 60).padStart(2, '0');
   const wrongCount = answers.filter((a, i) => a !== QUESTIONS[i].ans).length;
-
-  const {grade, msg, gradeClass} = getGrade(pct);
-  const dateStr = new Date().toLocaleDateString('en-GB', {day:'2-digit',month:'long',year:'numeric'});
+  const { grade, msg, gradeClass } = getGrade(pct);
+  const dateStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
   document.getElementById('result-date').textContent = dateStr;
 
   const badges = computeBadges(pct, timeTaken, wrongCount);
@@ -792,6 +885,7 @@ function showResults() {
       <div class="grade-badge">Grade ${grade} — ${pct}%</div>
       <div class="score-msg">${msg}</div>
       <div class="score-pct" style="margin-top:.4rem;color:rgba(255,255,255,.6);font-size:.9rem">Time taken: ${mm}:${ss}</div>
+      <div id="gas-status-slot" style="margin-top:.6rem"></div>
     </div>
 
     <div class="stats-row">
@@ -829,42 +923,77 @@ function showResults() {
   `;
 
   if (pct >= 60) spawnConfetti();
+
+  // ── Send data to Google Sheets ──
+  const statusSlot = document.getElementById('gas-status-slot');
+  if (GAS_URL && GAS_URL !== 'YOUR_GAS_WEB_APP_URL_HERE') {
+    statusSlot.innerHTML = `<div class="gas-status sending">⏳ Saving to school records…</div>`;
+
+    const breakdown = QUESTIONS.map((q, i) => ({
+      qNum: i + 1,
+      question: q.q.replace(/<em>/g, '').replace(/<\/em>/g, ''),
+      studentAnswer: answers[i] !== null ? q.opts[answers[i]] : 'Not answered',
+      correctAnswer: q.opts[q.ans],
+      isCorrect: answers[i] === q.ans
+    }));
+
+    const payload = {
+      action: 'submitQuiz',
+      topic: 'Time Measurement',
+      yearGroup: 'Year 3',
+      studentName,
+      score,
+      total: QUESTIONS.length,
+      percentage: pct,
+      grade,
+      timeTaken: `${mm}:${ss}`,
+      date: new Date().toISOString(),
+      breakdown
+    };
+
+    const result = await sendToGoogleSheets(payload);
+    if (result.ok) {
+      statusSlot.innerHTML = `<div class="gas-status success">✅ Saved to school records</div>`;
+    } else {
+      statusSlot.innerHTML = `<div class="gas-status error">⚠️ Could not save — check connection</div>`;
+    }
+  }
 }
 
 function getGrade(pct) {
-  if (pct >= 80) return {grade:'A',msg:'Outstanding work! You are a 3-D Shapes Champion! 🏆',gradeClass:'grade-a'};
-  if (pct >= 65) return {grade:'B',msg:'Great effort! You really know your 3-D shapes! ⭐',gradeClass:'grade-b'};
-  if (pct >= 50) return {grade:'C',msg:'Good try! Review the corrections and you\'ll improve! 📖',gradeClass:'grade-c'};
-  return {grade:'D',msg:'Don\'t give up! Study the corrections carefully and try again! 💪',gradeClass:'grade-d'};
+  if (pct >= 80) return { grade: 'A', msg: 'Outstanding work! You are a Time-Telling Champion! 🏆', gradeClass: 'grade-a' };
+  if (pct >= 65) return { grade: 'B', msg: 'Great effort! You really know your clocks! ⭐', gradeClass: 'grade-b' };
+  if (pct >= 50) return { grade: 'C', msg: 'Good try! Review the corrections and you\'ll improve! 📖', gradeClass: 'grade-c' };
+  return { grade: 'D', msg: 'Don\'t give up! Study the corrections carefully and try again! 💪', gradeClass: 'grade-d' };
 }
 
 function computeBadges(pct, timeSec, wrong) {
   const b = [];
-  if (pct === 100) b.push({icon:'🌟',text:'Perfect Score!'});
-  if (pct >= 80)   b.push({icon:'🏆',text:'Shape Champion'});
-  if (pct >= 65)   b.push({icon:'⭐',text:'Star Learner'});
-  if (wrong === 0) b.push({icon:'💎',text:'Flawless!'});
-  if (timeSec < 600) b.push({icon:'⚡',text:'Speed Thinker'});
-  b.push({icon:'📚',text:'3-D Explorer'});
-  b.push({icon:'🎓',text:'WPA Student'});
+  if (pct === 100) b.push({ icon: '🌟', text: 'Perfect Score!' });
+  if (pct >= 80) b.push({ icon: '🏆', text: 'Time Champion' });
+  if (pct >= 65) b.push({ icon: '⭐', text: 'Star Learner' });
+  if (wrong === 0) b.push({ icon: '💎', text: 'Flawless!' });
+  if (timeSec < 600) b.push({ icon: '⚡', text: 'Speed Thinker' });
+  b.push({ icon: '🕐', text: 'Clock Reader' });
+  b.push({ icon: '🎓', text: 'WPA Student' });
   return b;
 }
 
 // ─── CONFETTI ────────────────────────────────────────────────
 function spawnConfetti() {
   const wrap = document.getElementById('confetti-wrap');
-  const colors = ['#F47920','#007878','#D61680','#5A1A85','#F5A623','#0EA5E9','#1A7D42','#fff'];
+  const colors = ['#F47920', '#007878', '#D61680', '#5A1A85', '#F5A623', '#0EA5E9', '#1A7D42', '#fff'];
   for (let i = 0; i < 80; i++) {
     const p = document.createElement('div');
     p.className = 'confetti-piece';
     p.style.cssText = `
-      left:${Math.random()*100}%;
-      background:${colors[Math.floor(Math.random()*colors.length)]};
-      width:${6+Math.random()*8}px;height:${10+Math.random()*8}px;
-      animation-duration:${2.5+Math.random()*2}s;
-      animation-delay:${Math.random()*2}s;
-      transform:rotate(${Math.random()*360}deg);
-      border-radius:${Math.random()>.5?'50%':'2px'};
+      left:${Math.random() * 100}%;
+      background:${colors[Math.floor(Math.random() * colors.length)]};
+      width:${6 + Math.random() * 8}px;height:${10 + Math.random() * 8}px;
+      animation-duration:${2.5 + Math.random() * 2}s;
+      animation-delay:${Math.random() * 2}s;
+      transform:rotate(${Math.random() * 360}deg);
+      border-radius:${Math.random() > .5 ? '50%' : '2px'};
     `;
     wrap.appendChild(p);
     p.addEventListener('animationend', () => p.remove());
@@ -887,8 +1016,9 @@ function retakeQuiz() {
 // ─── DOWNLOAD CORRECTIONS ────────────────────────────────────
 function downloadCorrections() {
   const pct = Math.round((score / QUESTIONS.length) * 100);
-  const {grade} = getGrade(pct);
-  const dateStr = new Date().toLocaleDateString('en-GB', {day:'2-digit',month:'long',year:'numeric'});
+  const { grade } = getGrade(pct);
+  const dateStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
+  const wrongCount = answers.filter((a, i) => a !== QUESTIONS[i].ans).length;
 
   let rows = '';
   QUESTIONS.forEach((q, i) => {
@@ -899,22 +1029,28 @@ function downloadCorrections() {
     const icon = isCorrect ? '✅' : '❌';
     const rowBg = isCorrect ? '#d4f5e2' : '#ffe0f0';
     const borderColor = isCorrect ? '#1A7D42' : '#D61680';
-    // Remove <em> tags for plain text
-    const plainQ = q.q.replace(/<em>/g,'').replace(/<\/em>/g,'');
+    const plainQ = q.q.replace(/<em>/g, '').replace(/<\/em>/g, '');
+
+    // Generate inline clock SVG for the corrections if the question had one
+    let clockSVG = '';
+    if (q.clock) {
+      clockSVG = `<div style="text-align:center;margin:8px 0">${makeClock(q.clock[0], q.clock[1], 100)}</div>`;
+    }
 
     rows += `
       <div style="border:2px solid ${borderColor};border-radius:16px;padding:14px 18px;margin-bottom:12px;background:${rowBg};page-break-inside:avoid">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px">
           <div style="display:flex;align-items:center;gap:10px">
-            <span style="background:${isCorrect?'#1A7D42':'#D61680'};color:#fff;border-radius:8px;padding:3px 10px;font-weight:800;font-size:13px;font-family:'Baloo 2',cursive;white-space:nowrap">Q${i+1}</span>
+            <span style="background:${isCorrect ? '#1A7D42' : '#D61680'};color:#fff;border-radius:8px;padding:3px 10px;font-weight:800;font-size:13px;font-family:'Baloo 2',cursive;white-space:nowrap">Q${i + 1}</span>
             <span style="font-weight:700;font-size:14px;color:#1A1A2E;line-height:1.4">${plainQ}</span>
           </div>
           <span style="font-size:1.4rem;flex-shrink:0">${icon}</span>
         </div>
+        ${clockSVG}
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">
           <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:5px 12px;font-size:13px;font-weight:700">
             <span style="color:#64748B">Your answer:</span>
-            <span style="color:${isCorrect?'#1A7D42':'#D61680'};margin-left:4px">${studentAnswer}</span>
+            <span style="color:${isCorrect ? '#1A7D42' : '#D61680'};margin-left:4px">${studentAnswer}</span>
           </div>
           ${!isCorrect ? `<div style="background:rgba(255,255,255,.7);border-radius:8px;padding:5px 12px;font-size:13px;font-weight:700"><span style="color:#64748B">Correct answer:</span><span style="color:#1A7D42;margin-left:4px">${correctAnswer}</span></div>` : ''}
         </div>
@@ -923,29 +1059,16 @@ function downloadCorrections() {
     `;
   });
 
-  const wrongCount = answers.filter((a, i) => a !== QUESTIONS[i].ans).length;
-
   const corrHTML = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<title>Corrections — ${studentName} — 3-D Shapes</title>
+<html lang="en"><head><meta charset="UTF-8"/><title>Corrections — ${studentName} — Time Measurement</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Nunito',sans-serif;background:#F5F7FF;color:#1A1A2E;padding:0}
-  @media print{body{background:#fff}}
-</style>
-</head>
-<body>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Nunito',sans-serif;background:#F5F7FF;color:#1A1A2E;padding:0}@media print{body{background:#fff}}</style></head><body>
 <div style="max-width:800px;margin:0 auto;padding:24px">
-
-  <!-- HEADER -->
   <div style="background:linear-gradient(135deg,#1B2B6B,#2A3F9F);border-radius:20px;padding:24px 28px;margin-bottom:20px;color:#fff">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
       <div>
         <div style="font-size:11px;font-weight:700;letter-spacing:.08em;opacity:.7;text-transform:uppercase;margin-bottom:4px">Whyte Pyramid Academy — Year 3 Mathematics</div>
-        <div style="font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;line-height:1.2">3-D Shapes Assignment<br/>📋 Corrections Sheet</div>
+        <div style="font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;line-height:1.2">Time Measurement Assignment<br/>📋 Corrections Sheet</div>
       </div>
       <div style="text-align:right">
         <div style="font-size:11px;opacity:.7;margin-bottom:4px">${dateStr}</div>
@@ -955,69 +1078,38 @@ function downloadCorrections() {
         </div>
       </div>
     </div>
-
-    <!-- Student info row -->
     <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:16px">
-      <div style="background:rgba(255,255,255,.12);border-radius:10px;padding:8px 14px;font-size:13px">
-        <span style="opacity:.7">Student: </span><strong>${studentName}</strong>
-      </div>
-      <div style="background:rgba(255,255,255,.12);border-radius:10px;padding:8px 14px;font-size:13px">
-        <span style="opacity:.7">Grade: </span><strong>${grade} (${pct}%)</strong>
-      </div>
-      <div style="background:rgba(26,125,66,.4);border-radius:10px;padding:8px 14px;font-size:13px">
-        <span style="opacity:.85">✅ Correct: </span><strong>${score}</strong>
-      </div>
-      <div style="background:rgba(214,22,128,.3);border-radius:10px;padding:8px 14px;font-size:13px">
-        <span style="opacity:.85">❌ To Review: </span><strong>${wrongCount}</strong>
-      </div>
+      <div style="background:rgba(255,255,255,.12);border-radius:10px;padding:8px 14px;font-size:13px"><span style="opacity:.7">Student: </span><strong>${studentName}</strong></div>
+      <div style="background:rgba(255,255,255,.12);border-radius:10px;padding:8px 14px;font-size:13px"><span style="opacity:.7">Grade: </span><strong>${grade} (${pct}%)</strong></div>
+      <div style="background:rgba(26,125,66,.4);border-radius:10px;padding:8px 14px;font-size:13px"><span style="opacity:.85">✅ Correct: </span><strong>${score}</strong></div>
+      <div style="background:rgba(214,22,128,.3);border-radius:10px;padding:8px 14px;font-size:13px"><span style="opacity:.85">❌ To Review: </span><strong>${wrongCount}</strong></div>
     </div>
   </div>
-
-  <!-- MESSAGE -->
-  <div style="background:#EEF2FF;border-radius:14px;padding:14px 18px;margin-bottom:18px;border:2px solid #c7d2fe;font-size:14px;color:#1B2B6B;font-weight:700">
-    📌 Below are all 15 questions with your answers and explanations. Study the ones marked ❌ carefully and discuss with your teacher! 🌟
-  </div>
-
-  <!-- QUESTIONS -->
+  <div style="background:#EEF2FF;border-radius:14px;padding:14px 18px;margin-bottom:18px;border:2px solid #c7d2fe;font-size:14px;color:#1B2B6B;font-weight:700">📌 Below are all 15 questions with your answers and explanations. Study the ones marked ❌ carefully and discuss with your teacher! 🌟</div>
   ${rows}
-
-  <!-- SHAPES REFERENCE -->
   <div style="background:linear-gradient(135deg,#1B2B6B,#2A3F9F);border-radius:16px;padding:20px;margin-top:8px;color:#fff;page-break-inside:avoid">
-    <div style="font-family:'Baloo 2',cursive;font-size:16px;font-weight:800;margin-bottom:14px">🧊 3-D Shapes Quick Reference</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px">
+    <div style="font-family:'Baloo 2',cursive;font-size:16px;font-weight:800;margin-bottom:14px">🕐 Time Quick Reference</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
       ${[
-        {name:'Cube',faces:6,edges:12,vertices:8,icon:'🎲'},
-        {name:'Cuboid',faces:6,edges:12,vertices:8,icon:'📦'},
-        {name:'Sphere',faces:1,edges:0,vertices:0,icon:'⚽',note:'curved surface, no flat face'},
-        {name:'Cylinder',faces:3,edges:2,vertices:0,icon:'🥤',note:'2 flat + 1 curved'},
-        {name:'Cone',faces:2,edges:1,vertices:1,icon:'🍦',note:'1 flat + 1 curved'},
-        {name:'Sq-based Pyramid',faces:5,edges:8,vertices:5,icon:'🔺'},
-        {name:'Triangular Prism',faces:5,edges:9,vertices:6,icon:'📐'},
+        { title: 'O\'clock', desc: 'Minute hand on 12', eg: '3:00 = 3 o\'clock' },
+        { title: 'Half past', desc: 'Minute hand on 6 (30 min)', eg: '6:30 = half past 6' },
+        { title: 'Quarter past', desc: 'Minute hand on 3 (15 min)', eg: '9:15 = quarter past 9' },
+        { title: 'Quarter to', desc: 'Minute hand on 9 (45 min)', eg: '2:45 = quarter to 3' },
+        { title: '60 seconds', desc: '= 1 minute', eg: '' },
+        { title: '60 minutes', desc: '= 1 hour', eg: '' },
+        { title: '24 hours', desc: '= 1 day', eg: '' },
+        { title: '5-min intervals', desc: 'Each number = 5 minutes', eg: '2 = 10 min, 4 = 20 min' },
       ].map(s => `
         <div style="background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:12px;padding:10px 12px">
-          <div style="font-size:1.3rem;margin-bottom:4px">${s.icon}</div>
-          <div style="font-weight:800;font-size:13px;margin-bottom:6px">${s.name}</div>
-          <div style="font-size:11px;opacity:.85;line-height:1.6">
-            Faces: <strong>${s.faces}</strong><br/>
-            Edges: <strong>${s.edges}</strong><br/>
-            Vertices: <strong>${s.vertices}</strong>
-            ${s.note ? `<br/><em style="opacity:.7">(${s.note})</em>` : ''}
-          </div>
+          <div style="font-weight:800;font-size:13px;margin-bottom:4px">${s.title}</div>
+          <div style="font-size:11px;opacity:.85;line-height:1.5">${s.desc}${s.eg ? `<br/><em style="opacity:.7">${s.eg}</em>` : ''}</div>
         </div>
       `).join('')}
     </div>
   </div>
+  <div style="text-align:center;margin-top:18px;color:#64748B;font-size:12px;font-weight:600">Whyte Pyramid Academy — Year 3 Maths — Time Measurement Assignment © ${new Date().getFullYear()} &nbsp;|&nbsp; Keep practising and you'll be a Time Expert! 🌟</div>
+</div></body></html>`;
 
-  <!-- FOOTER -->
-  <div style="text-align:center;margin-top:18px;color:#64748B;font-size:12px;font-weight:600">
-    Whyte Pyramid Academy — Year 3 Maths — 3-D Shapes Assignment © ${new Date().getFullYear()} &nbsp;|&nbsp; Keep studying and you will be a Shapes Expert! 🌟
-  </div>
-
-</div>
-</body>
-</html>`;
-
-  // Open in new window and trigger print/save
   const win = window.open('', '_blank', 'width=900,height=700');
   win.document.write(corrHTML);
   win.document.close();
