@@ -6,50 +6,31 @@
 <title>Time Measurement Assignment — Whyte Pyramid Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-/* ─── RESET & VARIABLES ─────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --navy:#1B2B6B;--orange:#F47920;--teal:#007878;--pink:#D61680;
   --purple:#5A1A85;--green:#1A7D42;--gold:#F5A623;--sky:#0EA5E9;
   --white:#FFFFFF;--offwhite:#F5F7FF;--light:#EEF2FF;
   --dark:#1A1A2E;--mid:#64748B;
-  --r:1.1rem;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh;overflow-x:hidden}
 
-/* ─── SCREENS ───────────────────────────────────────────────── */
 .screen{display:none;min-height:100vh;padding:1.5rem}
 .screen.active{display:flex;flex-direction:column;align-items:center}
 
-/* ─── WELCOME SCREEN ────────────────────────────────────────── */
-#screen-welcome{
-  background:linear-gradient(135deg,var(--navy) 0%,#2A3F9F 50%,#1B2B6B 100%);
-  justify-content:center;gap:0;
-  position:relative;overflow:hidden;
-}
-.welcome-blob{position:absolute;border-radius:50%;filter:blur(0);pointer-events:none}
+#screen-welcome{background:linear-gradient(135deg,var(--navy) 0%,#2A3F9F 50%,#1B2B6B 100%);justify-content:center;position:relative;overflow:hidden}
+.welcome-blob{position:absolute;border-radius:50%;pointer-events:none}
 .wb1{width:380px;height:380px;background:var(--orange);opacity:.12;top:-80px;left:-80px}
 .wb2{width:420px;height:420px;background:var(--teal);opacity:.1;bottom:-100px;right:-100px}
 .wb3{width:200px;height:200px;background:var(--pink);opacity:.14;top:30%;left:70%}
 .wb4{width:160px;height:160px;background:var(--gold);opacity:.12;top:60%;left:5%}
 
 .welcome-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1.4rem;max-width:680px;width:100%;text-align:center;padding:2rem}
-
-.wpa-badge{
-  background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.25);
-  border-radius:50px;padding:.55rem 1.6rem;
-  color:#fff;font-size:.92rem;font-weight:700;letter-spacing:.06em;
-  backdrop-filter:blur(8px);
-}
-
+.wpa-badge{background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.25);border-radius:50px;padding:.55rem 1.6rem;color:#fff;font-size:.92rem;font-weight:700;letter-spacing:.06em;backdrop-filter:blur(8px)}
 .welcome-shapes-row{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin:.4rem 0}
 
-/* CSS clock art pieces */
-.clock-art{
-  width:72px;height:72px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;position:relative;
-}
+.clock-art{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 .clock-art.c1{background:linear-gradient(135deg,#F47920,#f9a55b);animation:float1 3s ease-in-out infinite}
 .clock-art.c2{background:radial-gradient(circle at 35% 35%,#60d8e8,#007878);animation:float2 3.4s ease-in-out infinite}
 .clock-art.c3{background:linear-gradient(135deg,#D61680,#e91e9a);animation:float3 2.8s ease-in-out infinite}
@@ -61,143 +42,68 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
 @keyframes float2{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12px) scale(1.05)}}
 @keyframes float3{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(-3deg)}}
 
-.welcome-title{
-  font-family:'Baloo 2',cursive;font-size:3rem;font-weight:800;
-  color:#fff;line-height:1.1;
-  text-shadow:0 4px 20px rgba(0,0,0,.3);
-}
+.welcome-title{font-family:'Baloo 2',cursive;font-size:3rem;font-weight:800;color:#fff;line-height:1.1;text-shadow:0 4px 20px rgba(0,0,0,.3)}
 .welcome-title span{color:var(--gold)}
 .welcome-sub{color:rgba(255,255,255,.8);font-size:1.05rem;font-weight:600;line-height:1.6}
 
 .info-cards{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;width:100%}
-.info-card{
-  background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);
-  border-radius:16px;padding:.9rem 1.3rem;color:#fff;
-  backdrop-filter:blur(8px);text-align:center;min-width:130px;
-  display:flex;flex-direction:column;gap:.3rem;
-}
-.info-card .ic-icon{font-size:1.8rem}
-.info-card .ic-val{font-size:1.3rem;font-weight:800;font-family:'Baloo 2',cursive}
-.info-card .ic-label{font-size:.78rem;opacity:.8;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.info-card{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:16px;padding:.9rem 1.3rem;color:#fff;backdrop-filter:blur(8px);text-align:center;min-width:130px;display:flex;flex-direction:column;gap:.3rem}
+.info-card .ic-icon{font-size:1.8rem}.info-card .ic-val{font-size:1.3rem;font-weight:800;font-family:'Baloo 2',cursive}.info-card .ic-label{font-size:.78rem;opacity:.8;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
 
-/* ─── NAME INPUT ────────────────────────────────────────────── */
 .name-group{display:flex;flex-direction:column;gap:.5rem;width:100%;max-width:420px}
 .name-label{color:rgba(255,255,255,.9);font-weight:700;font-size:1rem}
-.name-input{
-  border:2.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);
-  border-radius:14px;padding:.85rem 1.2rem;color:#fff;
-  font-size:1.05rem;font-family:'Nunito',sans-serif;font-weight:700;
-  outline:none;backdrop-filter:blur(8px);transition:.2s;
-}
+.name-input{border:2.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);border-radius:14px;padding:.85rem 1.2rem;color:#fff;font-size:1.05rem;font-family:'Nunito',sans-serif;font-weight:700;outline:none;backdrop-filter:blur(8px);transition:.2s}
 .name-input::placeholder{color:rgba(255,255,255,.45)}
 .name-input:focus{border-color:var(--gold);background:rgba(255,255,255,.18)}
 
-.btn-start{
-  background:linear-gradient(135deg,var(--orange),#f9a55b);
-  border:none;border-radius:18px;padding:1.1rem 3rem;
-  color:#fff;font-size:1.25rem;font-weight:800;font-family:'Baloo 2',cursive;
-  cursor:pointer;box-shadow:0 8px 30px rgba(244,121,32,.45);
-  transition:all .2s;letter-spacing:.02em;
-}
+.btn-start{background:linear-gradient(135deg,var(--orange),#f9a55b);border:none;border-radius:18px;padding:1.1rem 3rem;color:#fff;font-size:1.25rem;font-weight:800;font-family:'Baloo 2',cursive;cursor:pointer;box-shadow:0 8px 30px rgba(244,121,32,.45);transition:all .2s}
 .btn-start:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 40px rgba(244,121,32,.55)}
 .btn-start:active{transform:translateY(0) scale(.98)}
 
-/* ─── QUIZ SCREEN ───────────────────────────────────────────── */
 #screen-quiz{background:var(--offwhite);background-image:radial-gradient(var(--navy) 1.2px,transparent 1.2px);background-size:26px 26px;gap:0;justify-content:flex-start;padding-bottom:3rem}
-
-.quiz-header{
-  width:100%;max-width:780px;
-  background:var(--navy);border-radius:0 0 24px 24px;
-  padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;
-  box-shadow:0 6px 30px rgba(27,43,107,.25);
-  position:sticky;top:0;z-index:10;
-}
+.quiz-header{width:100%;max-width:780px;background:var(--navy);border-radius:0 0 24px 24px;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;box-shadow:0 6px 30px rgba(27,43,107,.25);position:sticky;top:0;z-index:10}
 .qh-school{color:rgba(255,255,255,.7);font-size:.82rem;font-weight:700;letter-spacing:.05em}
 .qh-title{color:#fff;font-size:1rem;font-weight:800;font-family:'Baloo 2',cursive}
-.timer-chip{
-  background:var(--orange);border-radius:30px;padding:.4rem .9rem;
-  color:#fff;font-weight:800;font-size:1.05rem;font-family:'Baloo 2',cursive;
-  display:flex;align-items:center;gap:.4rem;min-width:80px;justify-content:center;
-  box-shadow:0 3px 12px rgba(244,121,32,.4);
-}
+.timer-chip{background:var(--orange);border-radius:30px;padding:.4rem .9rem;color:#fff;font-weight:800;font-size:1.05rem;font-family:'Baloo 2',cursive;display:flex;align-items:center;gap:.4rem;min-width:80px;justify-content:center;box-shadow:0 3px 12px rgba(244,121,32,.4)}
 .timer-chip.urgent{background:#e53e3e;animation:pulse-red .6s ease-in-out infinite}
 @keyframes pulse-red{0%,100%{box-shadow:0 3px 12px rgba(229,62,62,.4)}50%{box-shadow:0 3px 20px rgba(229,62,62,.8)}}
 
-/* ─── PROGRESS ──────────────────────────────────────────────── */
 .progress-wrap{width:100%;max-width:780px;padding:1.2rem 1.5rem .4rem}
 .progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.55rem}
 .progress-label{font-size:.9rem;font-weight:700;color:var(--navy)}
 .progress-frac{font-size:.9rem;font-weight:800;color:var(--orange);font-family:'Baloo 2',cursive}
 .progress-track{background:#dde3ff;border-radius:30px;height:12px;overflow:hidden}
-.progress-fill{
-  height:100%;border-radius:30px;transition:width .5s cubic-bezier(.34,1.56,.64,1);
-  background:linear-gradient(90deg,var(--teal),var(--sky));
-}
+.progress-fill{height:100%;border-radius:30px;transition:width .5s cubic-bezier(.34,1.56,.64,1);background:linear-gradient(90deg,var(--teal),var(--sky))}
 .dots-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.6rem}
 .dot{width:18px;height:18px;border-radius:50%;background:#dde3ff;transition:.3s;cursor:default}
-.dot.done-correct{background:var(--teal)}
-.dot.done-wrong{background:var(--pink)}
+.dot.done-correct{background:var(--teal)}.dot.done-wrong{background:var(--pink)}
 .dot.current{background:var(--orange);animation:pulse-dot 1s ease-in-out infinite}
 @keyframes pulse-dot{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
 
-/* ─── QUESTION CARD ─────────────────────────────────────────── */
 .q-card-wrap{width:100%;max-width:780px;padding:.8rem 1.5rem;flex:1}
-.q-card{
-  background:#fff;border-radius:28px;padding:2rem;
-  box-shadow:0 10px 50px rgba(27,43,107,.12);
-  border:2.5px solid #eef2ff;
-  animation:card-in .4s cubic-bezier(.34,1.56,.64,1);
-}
+.q-card{background:#fff;border-radius:28px;padding:2rem;box-shadow:0 10px 50px rgba(27,43,107,.12);border:2.5px solid #eef2ff;animation:card-in .4s cubic-bezier(.34,1.56,.64,1)}
 @keyframes card-in{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 
 .q-meta{display:flex;align-items:center;gap:.7rem;margin-bottom:1.1rem}
-.q-num-badge{
-  background:linear-gradient(135deg,var(--navy),#2A3F9F);
-  color:#fff;border-radius:12px;padding:.35rem .85rem;
-  font-size:.88rem;font-weight:800;font-family:'Baloo 2',cursive;letter-spacing:.03em;
-}
+.q-num-badge{background:linear-gradient(135deg,var(--navy),#2A3F9F);color:#fff;border-radius:12px;padding:.35rem .85rem;font-size:.88rem;font-weight:800;font-family:'Baloo 2',cursive}
 .q-topic{background:var(--light);color:var(--navy);font-size:.8rem;font-weight:700;border-radius:30px;padding:.25rem .8rem;letter-spacing:.04em;text-transform:uppercase}
 .q-shape-icon{margin-left:auto;font-size:2rem}
 
-.q-text{
-  font-size:1.22rem;font-weight:800;color:var(--dark);line-height:1.45;
-  margin-bottom:1rem;font-family:'Baloo 2',cursive;
-}
+.q-text{font-size:1.22rem;font-weight:800;color:var(--dark);line-height:1.45;margin-bottom:1rem;font-family:'Baloo 2',cursive}
 .q-text em{color:var(--orange);font-style:normal}
 
-/* Clock display area */
-.clock-display{display:flex;justify-content:center;margin-bottom:1.3rem}
-.clock-display svg{
-  width:180px;height:180px;
-  filter:drop-shadow(0 4px 12px rgba(27,43,107,.15));
-}
+.clock-display{display:flex;justify-content:center;align-items:center;gap:1.2rem;margin-bottom:1.3rem;flex-wrap:wrap}
+.clock-display svg{width:180px;height:180px;filter:drop-shadow(0 4px 12px rgba(27,43,107,.15))}
+.digital-badge{background:var(--dark);color:#6ee7b7;font-family:'Baloo 2',cursive;font-size:2rem;font-weight:900;padding:.6rem 1.4rem;border-radius:14px;border:3px solid #334155;letter-spacing:.08em;box-shadow:inset 0 2px 8px rgba(0,0,0,.4)}
 
-/* ─── OPTIONS ───────────────────────────────────────────────── */
 .options-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
 @media(max-width:520px){.options-grid{grid-template-columns:1fr}}
-.option-btn{
-  background:#fff;border:2.5px solid #dde3ff;border-radius:18px;
-  padding:1rem 1.2rem;cursor:pointer;
-  display:flex;align-items:center;gap:.85rem;
-  transition:all .18s;text-align:left;
-  position:relative;overflow:hidden;
-  font-family:'Nunito',sans-serif;
-}
-.option-btn:hover:not(:disabled){
-  border-color:var(--navy);background:var(--light);
-  transform:translateY(-2px);box-shadow:0 6px 20px rgba(27,43,107,.12);
-}
+.option-btn{background:#fff;border:2.5px solid #dde3ff;border-radius:18px;padding:1rem 1.2rem;cursor:pointer;display:flex;align-items:center;gap:.85rem;transition:all .18s;text-align:left;position:relative;overflow:hidden;font-family:'Nunito',sans-serif}
+.option-btn:hover:not(:disabled){border-color:var(--navy);background:var(--light);transform:translateY(-2px);box-shadow:0 6px 20px rgba(27,43,107,.12)}
 .option-btn:active:not(:disabled){transform:translateY(0)}
-.opt-letter{
-  width:38px;height:38px;border-radius:12px;flex-shrink:0;
-  background:var(--light);color:var(--navy);
-  display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:1.05rem;font-family:'Baloo 2',cursive;
-  transition:.2s;
-}
+.opt-letter{width:38px;height:38px;border-radius:12px;flex-shrink:0;background:var(--light);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem;font-family:'Baloo 2',cursive;transition:.2s}
 .opt-text{font-size:.98rem;font-weight:700;color:var(--dark);line-height:1.3}
 
-/* Option states */
 .option-btn.correct{background:linear-gradient(135deg,#d4f5e2,#e6fef0);border-color:var(--green)}
 .option-btn.correct .opt-letter{background:var(--green);color:#fff}
 .option-btn.wrong{background:linear-gradient(135deg,#ffe0f0,#fff0f7);border-color:var(--pink)}
@@ -206,144 +112,69 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
 .option-btn.show-correct .opt-letter{background:var(--green);color:#fff}
 .option-btn:disabled{cursor:default}
 
-/* ─── FEEDBACK BANNER ───────────────────────────────────────── */
-.feedback-banner{
-  margin:1.1rem 0 0;padding:1rem 1.4rem;border-radius:18px;
-  display:flex;align-items:flex-start;gap:.8rem;
-  animation:slide-up .3s cubic-bezier(.34,1.56,.64,1);
-}
+.feedback-banner{margin:1.1rem 0 0;padding:1rem 1.4rem;border-radius:18px;display:flex;align-items:flex-start;gap:.8rem;animation:slide-up .3s cubic-bezier(.34,1.56,.64,1)}
 @keyframes slide-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .feedback-banner.correct{background:linear-gradient(135deg,#d4f5e2,#e6fef0);border:2px solid var(--green)}
 .feedback-banner.wrong{background:linear-gradient(135deg,#ffe0f0,#fff0f7);border:2px solid var(--pink)}
 .fb-icon{font-size:1.8rem;flex-shrink:0}
-.fb-body{}
 .fb-head{font-weight:800;font-size:1rem;font-family:'Baloo 2',cursive}
 .feedback-banner.correct .fb-head{color:var(--green)}
 .feedback-banner.wrong .fb-head{color:var(--pink)}
 .fb-explanation{font-size:.88rem;font-weight:600;color:var(--dark);margin-top:.2rem;line-height:1.5}
 
-/* ─── NEXT BUTTON ───────────────────────────────────────────── */
 .btn-next-wrap{margin-top:1.3rem;display:flex;justify-content:flex-end}
-.btn-next{
-  background:linear-gradient(135deg,var(--navy),#2A3F9F);
-  border:none;border-radius:16px;padding:.85rem 2rem;
-  color:#fff;font-size:1rem;font-weight:800;font-family:'Baloo 2',cursive;
-  cursor:pointer;box-shadow:0 5px 20px rgba(27,43,107,.3);
-  transition:all .2s;display:flex;align-items:center;gap:.5rem;
-  animation:slide-up .3s cubic-bezier(.34,1.56,.64,1);
-}
+.btn-next{background:linear-gradient(135deg,var(--navy),#2A3F9F);border:none;border-radius:16px;padding:.85rem 2rem;color:#fff;font-size:1rem;font-weight:800;font-family:'Baloo 2',cursive;cursor:pointer;box-shadow:0 5px 20px rgba(27,43,107,.3);transition:all .2s;display:flex;align-items:center;gap:.5rem;animation:slide-up .3s cubic-bezier(.34,1.56,.64,1)}
 .btn-next:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(27,43,107,.4)}
 .btn-next.last{background:linear-gradient(135deg,var(--green),#28a05b)}
 
-/* ─── RESULTS SCREEN ────────────────────────────────────────── */
-#screen-results{
-  background:linear-gradient(135deg,var(--navy) 0%,#1e3a8a 60%,#1B2B6B 100%);
-  justify-content:flex-start;gap:0;padding-top:0;overflow-y:auto;
-}
-.results-header{
-  width:100%;background:rgba(0,0,0,.2);
-  padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;
-  border-bottom:1px solid rgba(255,255,255,.1);
-}
+#screen-results{background:linear-gradient(135deg,var(--navy) 0%,#1e3a8a 60%,#1B2B6B 100%);justify-content:flex-start;gap:0;padding-top:0;overflow-y:auto}
+.results-header{width:100%;background:rgba(0,0,0,.2);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.1)}
 .rh-logo{color:#fff;font-weight:800;font-size:.95rem;font-family:'Baloo 2',cursive}
 .rh-date{color:rgba(255,255,255,.6);font-size:.8rem;font-weight:600}
-
 .results-inner{max-width:760px;width:100%;padding:1.5rem 1.5rem 3rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
 
-/* Confetti */
 .confetti-wrap{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100;overflow:hidden}
-.confetti-piece{
-  position:absolute;width:10px;height:14px;top:-20px;
-  animation:confetti-fall linear forwards;
-  border-radius:2px;
-}
-@keyframes confetti-fall{
-  0%{transform:translateY(-20px) rotate(0deg);opacity:1}
-  100%{transform:translateY(110vh) rotate(720deg);opacity:.3}
-}
+.confetti-piece{position:absolute;width:10px;height:14px;top:-20px;animation:confetti-fall linear forwards;border-radius:2px}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:.3}}
 
-.score-card{
-  background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);
-  border-radius:28px;padding:2rem;text-align:center;width:100%;
-  backdrop-filter:blur(12px);
-}
-.score-circle{
-  width:130px;height:130px;border-radius:50%;margin:0 auto 1rem;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  border:5px solid rgba(255,255,255,.3);position:relative;
-}
+.score-card{background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);border-radius:28px;padding:2rem;text-align:center;width:100%;backdrop-filter:blur(12px)}
+.score-circle{width:130px;height:130px;border-radius:50%;margin:0 auto 1rem;display:flex;flex-direction:column;align-items:center;justify-content:center;border:5px solid rgba(255,255,255,.3)}
 .score-circle.grade-a{background:radial-gradient(circle,#1A7D42,#28a05b)}
 .score-circle.grade-b{background:radial-gradient(circle,#007878,#0abfbc)}
 .score-circle.grade-c{background:radial-gradient(circle,var(--gold),#f9a55b)}
 .score-circle.grade-d{background:radial-gradient(circle,var(--pink),#e91e9a)}
 .score-num{font-size:2.5rem;font-weight:900;color:#fff;font-family:'Baloo 2',cursive;line-height:1}
 .score-denom{font-size:.95rem;color:rgba(255,255,255,.8);font-weight:700}
-.score-pct{font-size:1.1rem;font-weight:800;color:#fff;font-family:'Baloo 2',cursive}
-
-.grade-badge{
-  display:inline-block;padding:.4rem 1.4rem;border-radius:30px;
-  font-size:1.5rem;font-weight:900;font-family:'Baloo 2',cursive;
-  background:rgba(255,255,255,.15);color:#fff;
-  border:2px solid rgba(255,255,255,.3);margin:.3rem 0;
-}
+.grade-badge{display:inline-block;padding:.4rem 1.4rem;border-radius:30px;font-size:1.5rem;font-weight:900;font-family:'Baloo 2',cursive;background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.3);margin:.3rem 0}
 .student-name-big{font-size:1.5rem;font-weight:800;color:#fff;font-family:'Baloo 2',cursive}
 .score-msg{color:rgba(255,255,255,.85);font-size:.95rem;font-weight:600;margin-top:.3rem}
 
-/* Summary stats */
 .stats-row{display:flex;gap:1rem;flex-wrap:wrap;width:100%;justify-content:center}
-.stat-chip{
-  background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);
-  border-radius:16px;padding:.8rem 1.2rem;text-align:center;
-  color:#fff;min-width:120px;flex:1;max-width:160px;
-}
-.stat-chip .sc-icon{font-size:1.6rem}
-.stat-chip .sc-num{font-size:1.6rem;font-weight:900;font-family:'Baloo 2',cursive}
-.stat-chip .sc-label{font-size:.75rem;opacity:.75;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.stat-chip{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:16px;padding:.8rem 1.2rem;text-align:center;color:#fff;min-width:120px;flex:1;max-width:160px}
+.stat-chip .sc-icon{font-size:1.6rem}.stat-chip .sc-num{font-size:1.6rem;font-weight:900;font-family:'Baloo 2',cursive}.stat-chip .sc-label{font-size:.75rem;opacity:.75;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
 .stat-chip.correct-stat{border-color:rgba(26,125,66,.5);background:rgba(26,125,66,.2)}
 .stat-chip.wrong-stat{border-color:rgba(214,22,128,.5);background:rgba(214,22,128,.2)}
 
-/* Achievements */
 .achievements{width:100%;background:rgba(255,255,255,.08);border-radius:20px;padding:1.3rem;border:1.5px solid rgba(255,255,255,.15)}
 .ach-title{color:#fff;font-weight:800;font-family:'Baloo 2',cursive;font-size:1.05rem;margin-bottom:1rem}
 .badges-row{display:flex;flex-wrap:wrap;gap:.7rem}
-.badge{
-  background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);
-  border-radius:14px;padding:.55rem .95rem;
-  display:flex;align-items:center;gap:.5rem;color:#fff;
-}
-.badge .b-icon{font-size:1.2rem}
-.badge .b-text{font-size:.82rem;font-weight:700}
+.badge{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:.55rem .95rem;display:flex;align-items:center;gap:.5rem;color:#fff}
+.badge .b-icon{font-size:1.2rem}.badge .b-text{font-size:.82rem;font-weight:700}
 
-/* Results action buttons */
 .results-actions{display:flex;gap:1rem;flex-wrap:wrap;width:100%;justify-content:center}
-.btn-action{
-  border:none;border-radius:18px;padding:1rem 1.8rem;
-  font-size:1rem;font-weight:800;font-family:'Baloo 2',cursive;
-  cursor:pointer;transition:all .2s;
-  display:flex;align-items:center;gap:.55rem;
-  box-shadow:0 5px 20px rgba(0,0,0,.2);
-}
+.btn-action{border:none;border-radius:18px;padding:1rem 1.8rem;font-size:1rem;font-weight:800;font-family:'Baloo 2',cursive;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.55rem;box-shadow:0 5px 20px rgba(0,0,0,.2)}
 .btn-action:hover{transform:translateY(-2px)}
 .btn-corrections{background:linear-gradient(135deg,var(--orange),#f9a55b);color:#fff}
 .btn-corrections:hover{box-shadow:0 10px 30px rgba(244,121,32,.5)}
 .btn-retake{background:rgba(255,255,255,.12);color:#fff;border:2px solid rgba(255,255,255,.3)}
 .btn-retake:hover{background:rgba(255,255,255,.2)}
 
-/* ─── GAS STATUS ────────────────────────────────────────────── */
-.gas-status{
-  font-size:.82rem;font-weight:700;padding:.4rem .9rem;border-radius:30px;
-  display:inline-flex;align-items:center;gap:.4rem;margin-top:.3rem;
-}
+.gas-status{font-size:.82rem;font-weight:700;padding:.4rem .9rem;border-radius:30px;display:inline-flex;align-items:center;gap:.4rem;margin-top:.3rem}
 .gas-status.sending{background:rgba(245,166,35,.2);color:#F5A623}
 .gas-status.success{background:rgba(26,125,66,.2);color:#1A7D42}
 .gas-status.error{background:rgba(214,22,128,.2);color:#D61680}
 
-/* ─── LOADING ANIM ──────────────────────────────────────────── */
-.loading-overlay{
-  position:fixed;inset:0;background:var(--navy);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  z-index:999;gap:1.5rem;transition:opacity .5s;
-}
+.loading-overlay{position:fixed;inset:0;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;gap:1.5rem;transition:opacity .5s}
 .loading-overlay.fade-out{opacity:0;pointer-events:none}
 .loading-shapes{display:flex;gap:1.4rem}
 .ls{width:50px;height:50px;border-radius:50%;border:5px solid rgba(255,255,255,.3);border-top-color:var(--gold);animation:ls-spin .8s linear infinite}
@@ -353,716 +184,460 @@ body{font-family:'Nunito',sans-serif;background:var(--offwhite);min-height:100vh
 @keyframes ls-spin{to{transform:rotate(360deg)}}
 .loading-text{color:rgba(255,255,255,.7);font-weight:700;font-size:1rem;font-family:'Baloo 2',cursive}
 
-/* ─── SCROLLBAR ─────────────────────────────────────────────── */
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(27,43,107,.3);border-radius:10px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(27,43,107,.3);border-radius:10px}
 
-/* ─── RESPONSIVE ────────────────────────────────────────────── */
 @media(max-width:600px){
   .welcome-title{font-size:2.2rem}
   .q-text{font-size:1.08rem}
   .options-grid{grid-template-columns:1fr}
-  .info-cards{gap:.7rem}
-  .info-card{min-width:100px}
+  .info-cards{gap:.7rem}.info-card{min-width:100px}
   .clock-display svg{width:150px;height:150px}
+  .digital-badge{font-size:1.5rem;padding:.4rem 1rem}
 }
 </style>
 </head>
 <body>
 
-<!-- LOADING -->
 <div class="loading-overlay" id="loader">
-  <div class="loading-shapes">
-    <div class="ls"></div>
-    <div class="ls"></div>
-    <div class="ls"></div>
-  </div>
+  <div class="loading-shapes"><div class="ls"></div><div class="ls"></div><div class="ls"></div></div>
   <div class="loading-text">Getting your clocks ready… 🕐</div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  WELCOME SCREEN                                           -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- WELCOME -->
 <div id="screen-welcome" class="screen active">
-  <div class="welcome-blob wb1"></div>
-  <div class="welcome-blob wb2"></div>
-  <div class="welcome-blob wb3"></div>
-  <div class="welcome-blob wb4"></div>
+  <div class="welcome-blob wb1"></div><div class="welcome-blob wb2"></div><div class="welcome-blob wb3"></div><div class="welcome-blob wb4"></div>
   <div class="welcome-inner">
-
     <div class="wpa-badge">🎓 Whyte Pyramid Academy — Year 3 Mathematics</div>
-
     <div class="welcome-shapes-row" id="welcome-clocks"></div>
-
     <h1 class="welcome-title">Time<br/><span>Measurement! 🕐</span></h1>
-    <p class="welcome-sub">Can you read clocks and tell the time?<br/>Answer all 15 questions — then download your corrections. 🌟</p>
-
+    <p class="welcome-sub">Can you read analogue clocks, digital displays and tell the time in words?<br/>Answer all 15 questions — then download your corrections. 🌟</p>
     <div class="info-cards">
-      <div class="info-card">
-        <span class="ic-icon">📝</span>
-        <span class="ic-val">15</span>
-        <span class="ic-label">Questions</span>
-      </div>
-      <div class="info-card">
-        <span class="ic-icon">⏱️</span>
-        <span class="ic-val">20</span>
-        <span class="ic-label">Minutes</span>
-      </div>
-      <div class="info-card">
-        <span class="ic-icon">⭐</span>
-        <span class="ic-val">15</span>
-        <span class="ic-label">Max Score</span>
-      </div>
-      <div class="info-card">
-        <span class="ic-icon">📥</span>
-        <span class="ic-val">PDF</span>
-        <span class="ic-label">Corrections</span>
-      </div>
+      <div class="info-card"><span class="ic-icon">📝</span><span class="ic-val">15</span><span class="ic-label">Questions</span></div>
+      <div class="info-card"><span class="ic-icon">⏱️</span><span class="ic-val">20</span><span class="ic-label">Minutes</span></div>
+      <div class="info-card"><span class="ic-icon">⭐</span><span class="ic-val">15</span><span class="ic-label">Max Score</span></div>
+      <div class="info-card"><span class="ic-icon">📥</span><span class="ic-val">PDF</span><span class="ic-label">Corrections</span></div>
     </div>
-
     <div class="name-group">
       <label class="name-label" for="student-name">✏️ Enter your full name to begin:</label>
       <input id="student-name" class="name-input" type="text" placeholder="e.g. Adaeze Okonkwo" autocomplete="off" maxlength="60"/>
     </div>
-
-    <button class="btn-start" onclick="startQuiz()">
-      Let's Go! 🚀
-    </button>
-
-    <p style="color:rgba(255,255,255,.45);font-size:.82rem;font-weight:600;margin-top:-.4rem">
-      Read each question carefully and look at the clocks! ✅
-    </p>
+    <button class="btn-start" onclick="startQuiz()">Let's Go! 🚀</button>
+    <p style="color:rgba(255,255,255,.45);font-size:.82rem;font-weight:600;margin-top:-.4rem">Read each question carefully and look at the clocks! ✅</p>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  QUIZ SCREEN                                              -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- QUIZ -->
 <div id="screen-quiz" class="screen">
   <div class="quiz-header">
-    <div>
-      <div class="qh-school">WHYTE PYRAMID ACADEMY</div>
-      <div class="qh-title">Time Measurement 🕐</div>
-    </div>
+    <div><div class="qh-school">WHYTE PYRAMID ACADEMY</div><div class="qh-title">Time Measurement 🕐</div></div>
     <div class="timer-chip" id="timer-display">⏱ 20:00</div>
   </div>
-
   <div class="progress-wrap">
-    <div class="progress-top">
-      <span class="progress-label" id="prog-label">Question 1 of 15</span>
-      <span class="progress-frac" id="prog-frac">0 / 15</span>
-    </div>
+    <div class="progress-top"><span class="progress-label" id="prog-label">Question 1 of 15</span><span class="progress-frac" id="prog-frac">0 / 15</span></div>
     <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
     <div class="dots-row" id="dots-row"></div>
   </div>
-
-  <div class="q-card-wrap">
-    <div class="q-card" id="q-card"></div>
-  </div>
+  <div class="q-card-wrap"><div class="q-card" id="q-card"></div></div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  RESULTS SCREEN                                           -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- RESULTS -->
 <div id="screen-results" class="screen">
   <div class="confetti-wrap" id="confetti-wrap"></div>
-  <div class="results-header">
-    <div class="rh-logo">🎓 Whyte Pyramid Academy — Year 3 Maths</div>
-    <div class="rh-date" id="result-date"></div>
-  </div>
+  <div class="results-header"><div class="rh-logo">🎓 Whyte Pyramid Academy — Year 3 Maths</div><div class="rh-date" id="result-date"></div></div>
   <div class="results-inner" id="results-inner"></div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  JAVASCRIPT                                              -->
-<!-- ══════════════════════════════════════════════════════════ -->
 <script>
 // ╔════════════════════════════════════════════════════════════╗
-// ║  GOOGLE APPS SCRIPT CONFIG                                ║
-// ║  Deploy your doPost GAS web app and paste the URL below.  ║
+// ║  GOOGLE APPS SCRIPT — paste your deployed web app URL     ║
 // ╚════════════════════════════════════════════════════════════╝
-const GAS_URL = 'YOUR_GAS_WEB_APP_URL_HERE';
-// e.g. 'https://script.google.com/macros/s/AKfycb.../exec'
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzejVD_dwervYNLNRKN9U243hHJe916xT--S_PujOa8hEls6kcDJ-r0GURYnei8OiR7XQ/exec';
 
 // ─── SVG CLOCK GENERATOR ─────────────────────────────────────
-function makeClock(hour, minute, size = 180, id = '') {
-  const h = hour % 12;
-  const mAngle = (minute / 60) * 360;
-  const hAngle = (h / 12) * 360 + (minute / 60) * 30;
-  const r = size / 2;
-  const cx = r, cy = r;
-
-  // Tick marks
-  let ticks = '';
-  for (let i = 0; i < 12; i++) {
-    const angle = (i / 12) * 360 - 90;
-    const rad = angle * Math.PI / 180;
-    const inner = i % 3 === 0 ? r * 0.72 : r * 0.78;
-    const outer = r * 0.88;
-    const x1 = cx + inner * Math.cos(rad);
-    const y1 = cy + inner * Math.sin(rad);
-    const x2 = cx + outer * Math.cos(rad);
-    const y2 = cy + outer * Math.sin(rad);
-    const sw = i % 3 === 0 ? 3 : 1.5;
-    ticks += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#1B2B6B" stroke-width="${sw}" stroke-linecap="round"/>`;
+function makeClock(hour, minute, size=180, id='') {
+  const h=hour%12, mAngle=(minute/60)*360, hAngle=(h/12)*360+(minute/60)*30;
+  const r=size/2, cx=r, cy=r;
+  let ticks='';
+  for(let i=0;i<12;i++){
+    const a=(i/12)*360-90, rad=a*Math.PI/180;
+    const inner=i%3===0?r*.72:r*.78, outer=r*.88;
+    ticks+=`<line x1="${cx+inner*Math.cos(rad)}" y1="${cy+inner*Math.sin(rad)}" x2="${cx+outer*Math.cos(rad)}" y2="${cy+outer*Math.sin(rad)}" stroke="#1B2B6B" stroke-width="${i%3===0?3:1.5}" stroke-linecap="round"/>`;
   }
-
-  // Numbers
-  let nums = '';
-  for (let i = 1; i <= 12; i++) {
-    const angle = (i / 12) * 360 - 90;
-    const rad = angle * Math.PI / 180;
-    const nr = r * 0.62;
-    const nx = cx + nr * Math.cos(rad);
-    const ny = cy + nr * Math.sin(rad);
-    nums += `<text x="${nx}" y="${ny}" text-anchor="middle" dominant-baseline="central" font-family="'Baloo 2',cursive" font-weight="800" font-size="${size * 0.11}" fill="#1B2B6B">${i}</text>`;
+  let nums='';
+  for(let i=1;i<=12;i++){
+    const a=(i/12)*360-90, rad=a*Math.PI/180, nr=r*.62;
+    nums+=`<text x="${cx+nr*Math.cos(rad)}" y="${cy+nr*Math.sin(rad)}" text-anchor="middle" dominant-baseline="central" font-family="'Baloo 2',cursive" font-weight="800" font-size="${size*.11}" fill="#1B2B6B">${i}</text>`;
   }
-
-  // Hour hand
-  const hRad = (hAngle - 90) * Math.PI / 180;
-  const hLen = r * 0.45;
-  const hx = cx + hLen * Math.cos(hRad);
-  const hy = cy + hLen * Math.sin(hRad);
-
-  // Minute hand
-  const mRad = (mAngle - 90) * Math.PI / 180;
-  const mLen = r * 0.65;
-  const mx = cx + mLen * Math.cos(mRad);
-  const my = cy + mLen * Math.sin(mRad);
-
-  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg" ${id ? `id="${id}"` : ''}>
-    <!-- Face -->
-    <circle cx="${cx}" cy="${cy}" r="${r - 2}" fill="#FFFFFF" stroke="#1B2B6B" stroke-width="4"/>
-    <circle cx="${cx}" cy="${cy}" r="${r - 8}" fill="none" stroke="#EEF2FF" stroke-width="2"/>
-    ${ticks}
-    ${nums}
-    <!-- Hour hand -->
-    <line x1="${cx}" y1="${cy}" x2="${hx}" y2="${hy}" stroke="#1B2B6B" stroke-width="${size * 0.038}" stroke-linecap="round"/>
-    <!-- Minute hand -->
-    <line x1="${cx}" y1="${cy}" x2="${mx}" y2="${my}" stroke="#F47920" stroke-width="${size * 0.025}" stroke-linecap="round"/>
-    <!-- Centre dot -->
-    <circle cx="${cx}" cy="${cy}" r="${size * 0.032}" fill="#D61680"/>
+  const hRad=(hAngle-90)*Math.PI/180, hLen=r*.45;
+  const mRad=(mAngle-90)*Math.PI/180, mLen=r*.65;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg" ${id?`id="${id}"`:''}>
+    <circle cx="${cx}" cy="${cy}" r="${r-2}" fill="#FFF" stroke="#1B2B6B" stroke-width="4"/>
+    <circle cx="${cx}" cy="${cy}" r="${r-8}" fill="none" stroke="#EEF2FF" stroke-width="2"/>
+    ${ticks}${nums}
+    <line x1="${cx}" y1="${cy}" x2="${cx+hLen*Math.cos(hRad)}" y2="${cy+hLen*Math.sin(hRad)}" stroke="#1B2B6B" stroke-width="${size*.038}" stroke-linecap="round"/>
+    <line x1="${cx}" y1="${cy}" x2="${cx+mLen*Math.cos(mRad)}" y2="${cy+mLen*Math.sin(mRad)}" stroke="#F47920" stroke-width="${size*.025}" stroke-linecap="round"/>
+    <circle cx="${cx}" cy="${cy}" r="${size*.032}" fill="#D61680"/>
   </svg>`;
 }
 
-// Mini clock for welcome screen
-function makeWelcomeClock(hour, minute, className) {
-  return `<div class="clock-art ${className}">${makeClock(hour, minute, 52)}</div>`;
+function makeDigital(h, m) {
+  return `<div class="digital-badge">${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</div>`;
 }
 
-// Populate welcome clocks
+// Welcome clocks
 document.getElementById('welcome-clocks').innerHTML =
-  makeWelcomeClock(3, 0, 'c1') +
-  makeWelcomeClock(6, 30, 'c2') +
-  makeWelcomeClock(9, 15, 'c3') +
-  makeWelcomeClock(12, 0, 'c4') +
-  makeWelcomeClock(4, 45, 'c5');
+  ['c1','c2','c3','c4','c5'].map((c,i)=>{
+    const t=[[3,0],[6,30],[9,15],[12,0],[4,45]];
+    return `<div class="clock-art ${c}">${makeClock(t[i][0],t[i][1],52)}</div>`;
+  }).join('');
 
-// ─── QUESTIONS DATA ──────────────────────────────────────────
-// clock: [hour, minute] — if present, an SVG clock is rendered
+// ─── QUESTIONS ───────────────────────────────────────────────
+// Each question uses at least 2 of: analogue clock / digital display / words
+// Many use all 3. Answer options mix formats deliberately.
+//
+// Fields:
+//   clock:   [h,m] → renders analogue SVG
+//   digital: [h,m] → renders digital badge beside clock
+//   clockOptions: true → options are 4 mini-clocks
+
 const QUESTIONS = [
+  // Q1  Analogue → answer in Words + Digital
   {
-    q: "What time does this clock show?",
-    icon: "🕐", clock: [3, 0],
-    opts: ["3 o'clock", "12 o'clock", "6 o'clock", "9 o'clock"], ans: 0,
-    expl: "The minute hand points to 12 and the hour hand points to 3 — that means it is 3 o'clock!"
+    q:"Look at the clock. What time does it show <em>in words and in digital</em>?",
+    icon:"🕐", clock:[3,0], digital:null,
+    opts:["3 o'clock — 3:00","12 o'clock — 12:00","6 o'clock — 6:00","9 o'clock — 9:00"], ans:0,
+    expl:"The minute hand points to 12 and the hour hand to 3. In words: three o'clock. In digital: 3:00."
   },
+  // Q2  Analogue + Digital → answer in Words
   {
-    q: "What time does this clock show?",
-    icon: "🕕", clock: [6, 30],
-    opts: ["6 o'clock", "Half past 12", "Half past 6", "Quarter past 6"], ans: 2,
-    expl: "The minute hand is on 6 (pointing down) which means 'half past'. The hour hand is between 6 and 7, so it is half past 6."
+    q:"The clock and digital display both show the same time. What is this time <em>in words</em>?",
+    icon:"🕕", clock:[6,30], digital:[6,30],
+    opts:["Six o'clock","Quarter past 6","Half past 6","Quarter to 7"], ans:2,
+    expl:"The digital reads 06:30 and the minute hand points to 6. In words: half past 6 — that's 30 minutes after 6."
   },
+  // Q3  Analogue → Digital
   {
-    q: "What time does this clock show?",
-    icon: "🕘", clock: [9, 15],
-    opts: ["Quarter to 9", "9 o'clock", "Quarter past 9", "Quarter past 3"], ans: 2,
-    expl: "The minute hand is on 3, which means 'quarter past'. The hour hand is just past 9, so it is quarter past 9."
+    q:"Look at this analogue clock. What is the <em>correct digital time</em>? (In words it is quarter past 9.)",
+    icon:"🕘", clock:[9,15], digital:null,
+    opts:["9:15","9:45","3:09","9:30"], ans:0,
+    expl:"Quarter past 9 in words. The minute hand is on 3 (= 15 minutes) and the hour hand just past 9, so in digital: 9:15."
   },
+  // Q4  Digital shown → Words
   {
-    q: "What time does this clock show?",
-    icon: "🕐", clock: [2, 45],
-    opts: ["Quarter past 2", "Quarter to 2", "Quarter to 3", "Half past 2"], ans: 2,
-    expl: "The minute hand is on 9, which means 'quarter to' the next hour. The hour hand is near 3, so it is quarter to 3."
+    q:"A digital clock reads <em>2:45</em>. The analogue clock shows the same. What is this time <em>in words</em>?",
+    icon:"🕑", clock:[2,45], digital:[2,45],
+    opts:["Quarter past 2","Half past 2","Quarter to 3","Quarter to 2"], ans:2,
+    expl:"2:45 means 45 minutes past 2. That is also 15 minutes before 3. In words: quarter to 3. On the clock the minute hand is on 9."
   },
+  // Q5  Analogue → Words + Digital combined
   {
-    q: "What time does this clock show?",
-    icon: "🕔", clock: [5, 10],
-    opts: ["10 past 5", "5 past 10", "10 past 2", "50 minutes past 5"], ans: 0,
-    expl: "The minute hand is on 2, which means 10 minutes past. The hour hand is just past 5, so it is 10 minutes past 5."
+    q:"What time does this clock show? Choose the answer that gives <em>both words and digital</em>.",
+    icon:"🕔", clock:[5,10], digital:null,
+    opts:["10 past 5 — 5:10","5 past 10 — 10:05","10 to 5 — 4:50","50 past 5 — 5:50"], ans:0,
+    expl:"The minute hand is on 2 (= 10 minutes past) and the hour hand is just past 5. Words: 10 past 5. Digital: 5:10."
   },
+  // Q6  Digital given → pick correct Analogue clock
   {
-    q: "What time does this clock show?",
-    icon: "🕖", clock: [7, 35],
-    opts: ["7 o'clock", "25 to 7", "25 to 8", "35 past 7"], ans: 2,
-    expl: "The minute hand is on 7, which is 35 minutes past — or 25 minutes to the next hour. The hour hand is between 7 and 8, so it is 25 to 8."
+    q:"A digital clock shows <em>7:35</em>. In words that is <em>25 to 8</em>. Which analogue clock matches?",
+    icon:"🔎", clock:null, digital:null,
+    clockOptions:true,
+    opts:["Clock A","Clock B","Clock C","Clock D"],
+    clockData:[[7,35],[7,25],[8,35],[7,5]], ans:0,
+    expl:"7:35 digital = 25 to 8 in words. The minute hand must be on 7 and the hour hand between 7 and 8. Clock A is correct."
   },
+  // Q7  Knowledge + Analogue + Digital
   {
-    q: "How many <em>minutes</em> are in one hour?",
-    icon: "⏰", clock: null,
-    opts: ["30 minutes", "60 minutes", "100 minutes", "45 minutes"], ans: 1,
-    expl: "There are always 60 minutes in 1 hour. That's why the minute hand goes all the way around the clock in 60 minutes!"
+    q:"How many <em>minutes</em> are in one hour? (The minute hand goes from <em>12:00</em> all the way back to <em>12:00</em>.)",
+    icon:"⏰", clock:[12,0], digital:[12,0],
+    opts:["30 minutes","60 minutes","100 minutes","45 minutes"], ans:1,
+    expl:"There are 60 minutes in 1 hour. The minute hand travels from 12 all the way around the clock face back to 12."
   },
+  // Q8  Knowledge
   {
-    q: "How many <em>hours</em> are in one full day?",
-    icon: "📅", clock: null,
-    opts: ["12 hours", "20 hours", "24 hours", "36 hours"], ans: 2,
-    expl: "One full day has 24 hours — 12 hours of AM (morning) and 12 hours of PM (afternoon and night)."
+    q:"A full day runs from <em>12:00 midnight</em> to <em>12:00 midnight</em> again (twelve o'clock to twelve o'clock). How many hours is that?",
+    icon:"📅", clock:null, digital:null,
+    opts:["12 hours","20 hours","24 hours","36 hours"], ans:2,
+    expl:"One full day = 24 hours. The clock goes around twice: 12 hours AM (morning) + 12 hours PM (afternoon/night) = 24."
   },
+  // Q9  Analogue + Digital → Words (5-min intervals)
   {
-    q: "The clock shows <em>4:20</em>. How many minutes past 4 is that?",
-    icon: "🕟", clock: [4, 20],
-    opts: ["10 minutes", "15 minutes", "20 minutes", "25 minutes"], ans: 2,
-    expl: "The minute hand is on 4, which means 20 minutes past. Each number on the clock face is worth 5 minutes: 4 × 5 = 20."
+    q:"Both displays show <em>4:20</em>. How do you say this time <em>in words</em>?",
+    icon:"🕟", clock:[4,20], digital:[4,20],
+    opts:["10 past 4","20 past 4","20 to 4","Quarter past 4"], ans:1,
+    expl:"The minute hand is on 4: each number = 5 minutes, so 4 × 5 = 20 minutes past. Words: 20 past 4. Digital: 4:20."
   },
+  // Q10  Word problem → answer in Digital + Words
   {
-    q: "A lesson starts at <em>10 o'clock</em> and lasts <em>45 minutes</em>. What time does it end?",
-    icon: "🏫", clock: [10, 0],
-    opts: ["Quarter past 10", "Half past 10", "Quarter to 11", "11 o'clock"], ans: 2,
-    expl: "Starting at 10:00 and adding 45 minutes gives us 10:45 — that is quarter to 11!"
+    q:"A lesson starts at <em>ten o'clock (10:00)</em> and lasts <em>45 minutes</em>. What time does it end?",
+    icon:"🏫", clock:[10,0], digital:null,
+    opts:["Quarter past 10 — 10:15","Half past 10 — 10:30","Quarter to 11 — 10:45","Eleven o'clock — 11:00"], ans:2,
+    expl:"10:00 + 45 minutes = 10:45 in digital. In words: quarter to 11. The minute hand moves to 9."
   },
+  // Q11  Analogue → Digital (tricky: 05 not 5)
   {
-    q: "Which is the <em>correct digital time</em> for the clock shown?",
-    icon: "📱", clock: [8, 5],
-    opts: ["8:50", "8:05", "1:40", "5:08"], ans: 1,
-    expl: "The hour hand is on 8 and the minute hand is on 1 (which means 5 minutes). The digital time is 8:05. Remember to write 05 not just 5!"
+    q:"Look at this analogue clock carefully. Which <em>digital time</em> matches? (In words: five past 8.)",
+    icon:"📱", clock:[8,5], digital:null,
+    opts:["8:50","8:05","1:40","5:08"], ans:1,
+    expl:"The hour hand is on 8, the minute hand on 1 (= 5 minutes). Digital: 8:05 — remember to write 05, not 5! Words: five past 8."
   },
+  // Q12  Knowledge + Digital context
   {
-    q: "How many <em>seconds</em> are in one minute?",
-    icon: "⏱️", clock: null,
-    opts: ["30 seconds", "60 seconds", "100 seconds", "90 seconds"], ans: 1,
-    expl: "There are 60 seconds in 1 minute, and 60 minutes in 1 hour. Count 'one-Mississippi' 60 times and a whole minute has passed!"
+    q:"How many <em>seconds</em> are in one minute? (Think: a stopwatch going from <em>00:00</em> to <em>01:00</em>.)",
+    icon:"⏱️", clock:null, digital:null,
+    opts:["30 seconds","60 seconds","100 seconds","90 seconds"], ans:1,
+    expl:"60 seconds = 1 minute, and 60 minutes = 1 hour. A stopwatch counts 60 seconds each time the minute number goes up by 1."
   },
+  // Q13  Words → pick Analogue + Digital confirmation
   {
-    q: "If the time is <em>quarter past 2</em>, which clock shows this correctly?",
-    icon: "🔎", clock: null,
-    clockOptions: true,
-    opts: ["Clock A", "Clock B", "Clock C", "Clock D"],
-    clockData: [[2, 15], [2, 45], [3, 15], [2, 30]],
-    ans: 0,
-    expl: "Quarter past 2 means the minute hand is on 3 (15 minutes) and the hour hand is just past 2. That is clock A!"
+    q:"The time is <em>quarter past 2</em> — in digital that's <em>2:15</em>. Which analogue clock shows this?",
+    icon:"🔎", clock:null, digital:null,
+    clockOptions:true,
+    opts:["Clock A","Clock B","Clock C","Clock D"],
+    clockData:[[2,15],[2,45],[3,15],[2,30]], ans:0,
+    expl:"Quarter past 2 = 2:15 digital. The minute hand on 3 (15 min) and hour hand just past 2. Clock A matches."
   },
+  // Q14  Word problem with all 3 formats
   {
-    q: "Aisha eats lunch at <em>12:30</em>. She finishes at <em>1:00</em>. How long was her lunch?",
-    icon: "🍽️", clock: null,
-    opts: ["15 minutes", "30 minutes", "45 minutes", "1 hour"], ans: 1,
-    expl: "From 12:30 to 1:00 is 30 minutes — that's half an hour. The minute hand moves from 6 back to 12."
+    q:"Aisha starts lunch at <em>half past 12 (12:30)</em> and finishes at <em>one o'clock (1:00)</em>. How long was her lunch?",
+    icon:"🍽️", clock:[12,30], digital:[12,30],
+    opts:["15 minutes","30 minutes","45 minutes","1 hour"], ans:1,
+    expl:"From 12:30 to 1:00: the minute hand moves from 6 to 12 — that's 30 minutes (half an hour). Digital: 12:30 → 1:00."
   },
+  // Q15  Analogue + Digital → Words
   {
-    q: "What time does this clock show?",
-    icon: "🕛", clock: [12, 0],
-    opts: ["6 o'clock", "12 o'clock", "3 o'clock", "9 o'clock"], ans: 1,
-    expl: "Both the hour hand and the minute hand are pointing to 12. That means it is exactly 12 o'clock!"
+    q:"Both displays show the same time. What is it <em>in words</em>?",
+    icon:"🕛", clock:[12,0], digital:[12,0],
+    opts:["Six o'clock — 6:00","Twelve o'clock — 12:00","Three o'clock — 3:00","Nine o'clock — 9:00"], ans:1,
+    expl:"Both hands point to 12 and the display reads 12:00. In words: twelve o'clock. All three ways say the same thing!"
   }
 ];
 
 // ─── STATE ───────────────────────────────────────────────────
-let studentName = '';
-let current = 0;
-let score = 0;
-let answers = new Array(QUESTIONS.length).fill(null);
-let answered = false;
-let timer, timeLeft = 20 * 60;
-let startTime;
+let studentName='', current=0, score=0, answers=new Array(QUESTIONS.length).fill(null), answered=false, timer, timeLeft=20*60, startTime;
 
-// ─── LOADING ─────────────────────────────────────────────────
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('fade-out');
-    setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
-  }, 1400);
-});
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('fade-out');setTimeout(()=>document.getElementById('loader').style.display='none',500)},1400)});
 
-// ─── SCREEN MANAGEMENT ──────────────────────────────────────
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0, 0);
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+
+function startQuiz(){
+  const inp=document.getElementById('student-name').value.trim();
+  if(!inp){alert('✏️ Please enter your name first!');return}
+  studentName=inp;current=0;score=0;answered=false;
+  answers=new Array(QUESTIONS.length).fill(null);
+  timeLeft=20*60;startTime=new Date();
+  showScreen('screen-quiz');buildDots();renderQuestion();startTimer();
 }
 
-// ─── START QUIZ ──────────────────────────────────────────────
-function startQuiz() {
-  const inp = document.getElementById('student-name').value.trim();
-  if (!inp) { alert('✏️ Please enter your name first!'); return; }
-  studentName = inp;
-  current = 0; score = 0; answered = false;
-  answers = new Array(QUESTIONS.length).fill(null);
-  timeLeft = 20 * 60;
-  startTime = new Date();
-  showScreen('screen-quiz');
-  buildDots();
-  renderQuestion();
-  startTimer();
-}
+function buildDots(){const row=document.getElementById('dots-row');row.innerHTML='';for(let i=0;i<QUESTIONS.length;i++){const d=document.createElement('div');d.className='dot'+(i===0?' current':'');d.id=`dot-${i}`;row.appendChild(d)}}
+function updateDot(idx,state){const d=document.getElementById(`dot-${idx}`);if(d)d.className='dot '+state}
 
-// ─── DOTS ────────────────────────────────────────────────────
-function buildDots() {
-  const row = document.getElementById('dots-row');
-  row.innerHTML = '';
-  for (let i = 0; i < QUESTIONS.length; i++) {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i === 0 ? ' current' : '');
-    d.id = `dot-${i}`;
-    row.appendChild(d);
-  }
-}
-
-function updateDot(idx, state) {
-  const d = document.getElementById(`dot-${idx}`);
-  if (d) d.className = 'dot ' + state;
-}
-
-// ─── TIMER ───────────────────────────────────────────────────
-function startTimer() {
+function startTimer(){
   clearInterval(timer);
-  timer = setInterval(() => {
-    timeLeft--;
-    const el = document.getElementById('timer-display');
-    const m = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-    const s = String(timeLeft % 60).padStart(2, '0');
-    el.textContent = `⏱ ${m}:${s}`;
-    if (timeLeft <= 60) el.classList.add('urgent');
-    if (timeLeft <= 0) { clearInterval(timer); autoFinish(); }
-  }, 1000);
+  timer=setInterval(()=>{
+    timeLeft--;const el=document.getElementById('timer-display');
+    const m=String(Math.floor(timeLeft/60)).padStart(2,'0'), s=String(timeLeft%60).padStart(2,'0');
+    el.textContent=`⏱ ${m}:${s}`;
+    if(timeLeft<=60)el.classList.add('urgent');
+    if(timeLeft<=0){clearInterval(timer);showResults()}
+  },1000);
 }
 
-function autoFinish() { showResults(); }
+function renderQuestion(){
+  answered=false;
+  const q=QUESTIONS[current], letters=['A','B','C','D'];
+  const pct=(current/QUESTIONS.length)*100;
+  document.getElementById('prog-label').textContent=`Question ${current+1} of ${QUESTIONS.length}`;
+  document.getElementById('prog-frac').textContent=`${current} / ${QUESTIONS.length}`;
+  document.getElementById('prog-fill').style.width=pct+'%';
 
-// ─── RENDER QUESTION ─────────────────────────────────────────
-function renderQuestion() {
-  answered = false;
-  const q = QUESTIONS[current];
-  const letters = ['A', 'B', 'C', 'D'];
-  const pct = (current / QUESTIONS.length) * 100;
-
-  document.getElementById('prog-label').textContent = `Question ${current + 1} of ${QUESTIONS.length}`;
-  document.getElementById('prog-frac').textContent = `${current} / ${QUESTIONS.length}`;
-  document.getElementById('prog-fill').style.width = pct + '%';
-
-  for (let i = 0; i < QUESTIONS.length; i++) {
-    if (i < current) updateDot(i, answers[i] === QUESTIONS[i].ans ? 'done-correct' : 'done-wrong');
-    else if (i === current) updateDot(i, 'current');
-    else document.getElementById(`dot-${i}`).className = 'dot';
+  for(let i=0;i<QUESTIONS.length;i++){
+    if(i<current)updateDot(i,answers[i]===QUESTIONS[i].ans?'done-correct':'done-wrong');
+    else if(i===current)updateDot(i,'current');
+    else document.getElementById(`dot-${i}`).className='dot';
   }
 
-  // Build clock HTML
-  let clockHTML = '';
-  if (q.clock) {
-    clockHTML = `<div class="clock-display">${makeClock(q.clock[0], q.clock[1])}</div>`;
+  let visualHTML='';
+  if(q.clock||q.digital){
+    let inner='';
+    if(q.clock) inner+=makeClock(q.clock[0],q.clock[1]);
+    if(q.digital) inner+=makeDigital(q.digital[0],q.digital[1]);
+    visualHTML=`<div class="clock-display">${inner}</div>`;
   }
 
-  // Special: clock options (Q13-style)
-  let optionsHTML = '';
-  if (q.clockOptions) {
-    optionsHTML = q.opts.map((opt, i) => `
+  let optionsHTML='';
+  if(q.clockOptions){
+    optionsHTML=q.opts.map((opt,i)=>`
       <button class="option-btn" id="opt-${i}" onclick="selectOption(${i})" style="flex-direction:column;align-items:center;padding:1rem .6rem">
-        <div style="margin-bottom:.4rem">${makeClock(q.clockData[i][0], q.clockData[i][1], 90)}</div>
+        <div style="margin-bottom:.4rem">${makeClock(q.clockData[i][0],q.clockData[i][1],90)}</div>
         <div class="opt-letter" style="width:auto;padding:0 .6rem;height:28px;font-size:.85rem">${letters[i]}</div>
-      </button>
-    `).join('');
+      </button>`).join('');
   } else {
-    optionsHTML = q.opts.map((opt, i) => `
+    optionsHTML=q.opts.map((opt,i)=>`
       <button class="option-btn" id="opt-${i}" onclick="selectOption(${i})">
         <div class="opt-letter">${letters[i]}</div>
         <div class="opt-text">${opt}</div>
-      </button>
-    `).join('');
+      </button>`).join('');
   }
 
-  const card = document.getElementById('q-card');
-  card.innerHTML = `
-    <div class="q-meta">
-      <span class="q-num-badge">Q${current + 1}</span>
-      <span class="q-topic">Time</span>
-      <span class="q-shape-icon">${q.icon}</span>
-    </div>
+  const card=document.getElementById('q-card');
+  card.innerHTML=`
+    <div class="q-meta"><span class="q-num-badge">Q${current+1}</span><span class="q-topic">Time</span><span class="q-shape-icon">${q.icon}</span></div>
     <div class="q-text">${q.q}</div>
-    ${clockHTML}
+    ${visualHTML}
     <div class="options-grid" id="opts">${optionsHTML}</div>
-    <div id="feedback-slot"></div>
-    <div id="next-slot"></div>
-  `;
-  card.style.animation = 'none';
-  card.offsetHeight;
-  card.style.animation = '';
+    <div id="feedback-slot"></div><div id="next-slot"></div>`;
+  card.style.animation='none';card.offsetHeight;card.style.animation='';
 }
 
-// ─── SELECT OPTION ────────────────────────────────────────────
-function selectOption(idx) {
-  if (answered) return;
-  answered = true;
-  const q = QUESTIONS[current];
-  const isCorrect = idx === q.ans;
-  answers[current] = idx;
-  if (isCorrect) score++;
+function selectOption(idx){
+  if(answered)return;answered=true;
+  const q=QUESTIONS[current], isCorrect=idx===q.ans;
+  answers[current]=idx;if(isCorrect)score++;
 
-  for (let i = 0; i < 4; i++) {
-    const btn = document.getElementById(`opt-${i}`);
-    btn.disabled = true;
-    if (i === idx && isCorrect) btn.classList.add('correct');
-    else if (i === idx && !isCorrect) btn.classList.add('wrong');
-    else if (i === q.ans) btn.classList.add('show-correct');
+  for(let i=0;i<4;i++){
+    const btn=document.getElementById(`opt-${i}`);btn.disabled=true;
+    if(i===idx&&isCorrect)btn.classList.add('correct');
+    else if(i===idx&&!isCorrect)btn.classList.add('wrong');
+    else if(i===q.ans)btn.classList.add('show-correct');
   }
 
-  document.getElementById('feedback-slot').innerHTML = `
-    <div class="feedback-banner ${isCorrect ? 'correct' : 'wrong'}">
-      <div class="fb-icon">${isCorrect ? '🎉' : '💡'}</div>
+  document.getElementById('feedback-slot').innerHTML=`
+    <div class="feedback-banner ${isCorrect?'correct':'wrong'}">
+      <div class="fb-icon">${isCorrect?'🎉':'💡'}</div>
       <div class="fb-body">
-        <div class="fb-head">${isCorrect ? 'Brilliant! That\'s correct! ⭐' : `Not quite — the answer is ${q.opts[q.ans]}!`}</div>
+        <div class="fb-head">${isCorrect?'Brilliant! That\'s correct! ⭐':`Not quite — the answer is ${q.opts[q.ans]}!`}</div>
         <div class="fb-explanation">${q.expl}</div>
       </div>
-    </div>
-  `;
+    </div>`;
 
-  const isLast = current === QUESTIONS.length - 1;
-  document.getElementById('next-slot').innerHTML = `
-    <div class="btn-next-wrap">
-      <button class="btn-next ${isLast ? 'last' : ''}" onclick="nextQuestion()">
-        ${isLast ? '🏁 See My Results!' : 'Next Question ➡️'}
-      </button>
-    </div>
-  `;
-
-  updateDot(current, isCorrect ? 'done-correct' : 'done-wrong');
+  const isLast=current===QUESTIONS.length-1;
+  document.getElementById('next-slot').innerHTML=`
+    <div class="btn-next-wrap"><button class="btn-next ${isLast?'last':''}" onclick="nextQuestion()">${isLast?'🏁 See My Results!':'Next Question ➡️'}</button></div>`;
+  updateDot(current,isCorrect?'done-correct':'done-wrong');
 }
 
-// ─── NEXT QUESTION ────────────────────────────────────────────
-function nextQuestion() {
-  if (current < QUESTIONS.length - 1) {
-    current++;
-    renderQuestion();
-  } else {
-    clearInterval(timer);
-    showResults();
-  }
+function nextQuestion(){if(current<QUESTIONS.length-1){current++;renderQuestion()}else{clearInterval(timer);showResults()}}
+
+async function sendToGoogleSheets(payload){
+  if(!GAS_URL||GAS_URL==='YOUR_GAS_WEB_APP_URL_HERE')return{ok:false,reason:'not_configured'};
+  try{await fetch(GAS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});return{ok:true}}
+  catch(err){console.error('GAS error:',err);return{ok:false,reason:err.message}}
 }
 
-// ─── SEND TO GOOGLE SHEETS ──────────────────────────────────
-async function sendToGoogleSheets(payload) {
-  if (!GAS_URL || GAS_URL === 'YOUR_GAS_WEB_APP_URL_HERE') {
-    console.warn('GAS URL not configured — skipping sheet submission.');
-    return { ok: false, reason: 'not_configured' };
-  }
-  try {
-    const res = await fetch(GAS_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    // no-cors gives opaque response — we assume success
-    return { ok: true };
-  } catch (err) {
-    console.error('GAS submission error:', err);
-    return { ok: false, reason: err.message };
-  }
-}
+async function showResults(){
+  clearInterval(timer);showScreen('screen-results');
+  const pct=Math.round((score/QUESTIONS.length)*100);
+  const timeTaken=Math.round((new Date()-startTime)/1000);
+  const mm=String(Math.floor(timeTaken/60)).padStart(2,'0'), ss=String(timeTaken%60).padStart(2,'0');
+  const wrongCount=answers.filter((a,i)=>a!==QUESTIONS[i].ans).length;
+  const{grade,msg,gradeClass}=getGrade(pct);
+  const dateStr=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('result-date').textContent=dateStr;
+  const badges=computeBadges(pct,timeTaken,wrongCount);
 
-// ─── RESULTS ─────────────────────────────────────────────────
-async function showResults() {
-  clearInterval(timer);
-  showScreen('screen-results');
-
-  const pct = Math.round((score / QUESTIONS.length) * 100);
-  const timeTaken = Math.round((new Date() - startTime) / 1000);
-  const mm = String(Math.floor(timeTaken / 60)).padStart(2, '0');
-  const ss = String(timeTaken % 60).padStart(2, '0');
-  const wrongCount = answers.filter((a, i) => a !== QUESTIONS[i].ans).length;
-  const { grade, msg, gradeClass } = getGrade(pct);
-  const dateStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
-  document.getElementById('result-date').textContent = dateStr;
-
-  const badges = computeBadges(pct, timeTaken, wrongCount);
-
-  document.getElementById('results-inner').innerHTML = `
+  document.getElementById('results-inner').innerHTML=`
     <div class="score-card">
-      <div class="score-circle ${gradeClass}">
-        <div class="score-num">${score}</div>
-        <div class="score-denom">out of 15</div>
-      </div>
+      <div class="score-circle ${gradeClass}"><div class="score-num">${score}</div><div class="score-denom">out of 15</div></div>
       <div class="student-name-big">🌟 ${studentName}</div>
       <div class="grade-badge">Grade ${grade} — ${pct}%</div>
       <div class="score-msg">${msg}</div>
-      <div class="score-pct" style="margin-top:.4rem;color:rgba(255,255,255,.6);font-size:.9rem">Time taken: ${mm}:${ss}</div>
+      <div style="margin-top:.4rem;color:rgba(255,255,255,.6);font-size:.9rem;font-weight:800;font-family:'Baloo 2',cursive">Time taken: ${mm}:${ss}</div>
       <div id="gas-status-slot" style="margin-top:.6rem"></div>
     </div>
-
     <div class="stats-row">
-      <div class="stat-chip correct-stat">
-        <div class="sc-icon">✅</div>
-        <div class="sc-num">${score}</div>
-        <div class="sc-label">Correct</div>
-      </div>
-      <div class="stat-chip wrong-stat">
-        <div class="sc-icon">❌</div>
-        <div class="sc-num">${wrongCount}</div>
-        <div class="sc-label">To Review</div>
-      </div>
-      <div class="stat-chip">
-        <div class="sc-icon">📊</div>
-        <div class="sc-num">${pct}%</div>
-        <div class="sc-label">Score</div>
-      </div>
-      <div class="stat-chip">
-        <div class="sc-icon">⏱️</div>
-        <div class="sc-num">${mm}:${ss}</div>
-        <div class="sc-label">Time Used</div>
-      </div>
+      <div class="stat-chip correct-stat"><div class="sc-icon">✅</div><div class="sc-num">${score}</div><div class="sc-label">Correct</div></div>
+      <div class="stat-chip wrong-stat"><div class="sc-icon">❌</div><div class="sc-num">${wrongCount}</div><div class="sc-label">To Review</div></div>
+      <div class="stat-chip"><div class="sc-icon">📊</div><div class="sc-num">${pct}%</div><div class="sc-label">Score</div></div>
+      <div class="stat-chip"><div class="sc-icon">⏱️</div><div class="sc-num">${mm}:${ss}</div><div class="sc-label">Time Used</div></div>
     </div>
-
-    <div class="achievements">
-      <div class="ach-title">🏅 Your Achievement Badges</div>
-      <div class="badges-row">${badges.map(b => `<div class="badge"><span class="b-icon">${b.icon}</span><span class="b-text">${b.text}</span></div>`).join('')}</div>
+    <div class="achievements"><div class="ach-title">🏅 Your Achievement Badges</div>
+      <div class="badges-row">${badges.map(b=>`<div class="badge"><span class="b-icon">${b.icon}</span><span class="b-text">${b.text}</span></div>`).join('')}</div>
     </div>
-
     <div class="results-actions">
       <button class="btn-action btn-corrections" onclick="downloadCorrections()">📥 Download Corrections</button>
       <button class="btn-action btn-retake" onclick="retakeQuiz()">🔄 Try Again</button>
-    </div>
-  `;
+    </div>`;
 
-  if (pct >= 60) spawnConfetti();
+  if(pct>=60)spawnConfetti();
 
-  // ── Send data to Google Sheets ──
-  const statusSlot = document.getElementById('gas-status-slot');
-  if (GAS_URL && GAS_URL !== 'YOUR_GAS_WEB_APP_URL_HERE') {
-    statusSlot.innerHTML = `<div class="gas-status sending">⏳ Saving to school records…</div>`;
-
-    const breakdown = QUESTIONS.map((q, i) => ({
-      qNum: i + 1,
-      question: q.q.replace(/<em>/g, '').replace(/<\/em>/g, ''),
-      studentAnswer: answers[i] !== null ? q.opts[answers[i]] : 'Not answered',
-      correctAnswer: q.opts[q.ans],
-      isCorrect: answers[i] === q.ans
-    }));
-
-    const payload = {
-      action: 'submitQuiz',
-      topic: 'Time Measurement',
-      yearGroup: 'Year 3',
-      studentName,
-      score,
-      total: QUESTIONS.length,
-      percentage: pct,
-      grade,
-      timeTaken: `${mm}:${ss}`,
-      date: new Date().toISOString(),
-      breakdown
-    };
-
-    const result = await sendToGoogleSheets(payload);
-    if (result.ok) {
-      statusSlot.innerHTML = `<div class="gas-status success">✅ Saved to school records</div>`;
-    } else {
-      statusSlot.innerHTML = `<div class="gas-status error">⚠️ Could not save — check connection</div>`;
-    }
+  const statusSlot=document.getElementById('gas-status-slot');
+  if(GAS_URL&&GAS_URL!=='YOUR_GAS_WEB_APP_URL_HERE'){
+    statusSlot.innerHTML=`<div class="gas-status sending">⏳ Saving to school records…</div>`;
+    const breakdown=QUESTIONS.map((q,i)=>({qNum:i+1,question:q.q.replace(/<em>/g,'').replace(/<\/em>/g,''),studentAnswer:answers[i]!==null?q.opts[answers[i]]:'Not answered',correctAnswer:q.opts[q.ans],isCorrect:answers[i]===q.ans}));
+    const payload={action:'submitQuiz',topic:'Time Measurement',yearGroup:'Year 3',studentName,score,total:QUESTIONS.length,percentage:pct,grade,timeTaken:`${mm}:${ss}`,date:new Date().toISOString(),breakdown};
+    const result=await sendToGoogleSheets(payload);
+    statusSlot.innerHTML=result.ok?`<div class="gas-status success">✅ Saved to school records</div>`:`<div class="gas-status error">⚠️ Could not save — check connection</div>`;
   }
 }
 
-function getGrade(pct) {
-  if (pct >= 80) return { grade: 'A', msg: 'Outstanding work! You are a Time-Telling Champion! 🏆', gradeClass: 'grade-a' };
-  if (pct >= 65) return { grade: 'B', msg: 'Great effort! You really know your clocks! ⭐', gradeClass: 'grade-b' };
-  if (pct >= 50) return { grade: 'C', msg: 'Good try! Review the corrections and you\'ll improve! 📖', gradeClass: 'grade-c' };
-  return { grade: 'D', msg: 'Don\'t give up! Study the corrections carefully and try again! 💪', gradeClass: 'grade-d' };
+function getGrade(pct){
+  if(pct>=80)return{grade:'A',msg:'Outstanding! You are a Time-Telling Champion! 🏆',gradeClass:'grade-a'};
+  if(pct>=65)return{grade:'B',msg:'Great effort! You really know your clocks! ⭐',gradeClass:'grade-b'};
+  if(pct>=50)return{grade:'C',msg:'Good try! Review the corrections and you\'ll improve! 📖',gradeClass:'grade-c'};
+  return{grade:'D',msg:'Don\'t give up! Study the corrections and try again! 💪',gradeClass:'grade-d'};
 }
-
-function computeBadges(pct, timeSec, wrong) {
-  const b = [];
-  if (pct === 100) b.push({ icon: '🌟', text: 'Perfect Score!' });
-  if (pct >= 80) b.push({ icon: '🏆', text: 'Time Champion' });
-  if (pct >= 65) b.push({ icon: '⭐', text: 'Star Learner' });
-  if (wrong === 0) b.push({ icon: '💎', text: 'Flawless!' });
-  if (timeSec < 600) b.push({ icon: '⚡', text: 'Speed Thinker' });
-  b.push({ icon: '🕐', text: 'Clock Reader' });
-  b.push({ icon: '🎓', text: 'WPA Student' });
+function computeBadges(pct,timeSec,wrong){
+  const b=[];
+  if(pct===100)b.push({icon:'🌟',text:'Perfect Score!'});
+  if(pct>=80)b.push({icon:'🏆',text:'Time Champion'});
+  if(pct>=65)b.push({icon:'⭐',text:'Star Learner'});
+  if(wrong===0)b.push({icon:'💎',text:'Flawless!'});
+  if(timeSec<600)b.push({icon:'⚡',text:'Speed Thinker'});
+  b.push({icon:'🕐',text:'Clock Reader'});b.push({icon:'🎓',text:'WPA Student'});
   return b;
 }
-
-// ─── CONFETTI ────────────────────────────────────────────────
-function spawnConfetti() {
-  const wrap = document.getElementById('confetti-wrap');
-  const colors = ['#F47920', '#007878', '#D61680', '#5A1A85', '#F5A623', '#0EA5E9', '#1A7D42', '#fff'];
-  for (let i = 0; i < 80; i++) {
-    const p = document.createElement('div');
-    p.className = 'confetti-piece';
-    p.style.cssText = `
-      left:${Math.random() * 100}%;
-      background:${colors[Math.floor(Math.random() * colors.length)]};
-      width:${6 + Math.random() * 8}px;height:${10 + Math.random() * 8}px;
-      animation-duration:${2.5 + Math.random() * 2}s;
-      animation-delay:${Math.random() * 2}s;
-      transform:rotate(${Math.random() * 360}deg);
-      border-radius:${Math.random() > .5 ? '50%' : '2px'};
-    `;
-    wrap.appendChild(p);
-    p.addEventListener('animationend', () => p.remove());
-  }
+function spawnConfetti(){
+  const wrap=document.getElementById('confetti-wrap');
+  const colors=['#F47920','#007878','#D61680','#5A1A85','#F5A623','#0EA5E9','#1A7D42','#fff'];
+  for(let i=0;i<80;i++){const p=document.createElement('div');p.className='confetti-piece';p.style.cssText=`left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};width:${6+Math.random()*8}px;height:${10+Math.random()*8}px;animation-duration:${2.5+Math.random()*2}s;animation-delay:${Math.random()*2}s;transform:rotate(${Math.random()*360}deg);border-radius:${Math.random()>.5?'50%':'2px'}`;wrap.appendChild(p);p.addEventListener('animationend',()=>p.remove())}
+}
+function retakeQuiz(){
+  current=0;score=0;answered=false;answers=new Array(QUESTIONS.length).fill(null);
+  timeLeft=20*60;startTime=new Date();document.getElementById('confetti-wrap').innerHTML='';
+  showScreen('screen-quiz');buildDots();renderQuestion();startTimer();
 }
 
-// ─── RETAKE ──────────────────────────────────────────────────
-function retakeQuiz() {
-  current = 0; score = 0; answered = false;
-  answers = new Array(QUESTIONS.length).fill(null);
-  timeLeft = 20 * 60;
-  startTime = new Date();
-  document.getElementById('confetti-wrap').innerHTML = '';
-  showScreen('screen-quiz');
-  buildDots();
-  renderQuestion();
-  startTimer();
-}
+// ─── CORRECTIONS ─────────────────────────────────────────────
+function downloadCorrections(){
+  const pct=Math.round((score/QUESTIONS.length)*100);
+  const{grade}=getGrade(pct);
+  const dateStr=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'});
+  const wrongCount=answers.filter((a,i)=>a!==QUESTIONS[i].ans).length;
 
-// ─── DOWNLOAD CORRECTIONS ────────────────────────────────────
-function downloadCorrections() {
-  const pct = Math.round((score / QUESTIONS.length) * 100);
-  const { grade } = getGrade(pct);
-  const dateStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
-  const wrongCount = answers.filter((a, i) => a !== QUESTIONS[i].ans).length;
+  let rows='';
+  QUESTIONS.forEach((q,i)=>{
+    const student=answers[i], isCorrect=student===q.ans;
+    const studentAnswer=student!==null?q.opts[student]:'Not answered';
+    const correctAnswer=q.opts[q.ans];
+    const icon=isCorrect?'✅':'❌', rowBg=isCorrect?'#d4f5e2':'#ffe0f0', bc=isCorrect?'#1A7D42':'#D61680';
+    const plainQ=q.q.replace(/<em>/g,'').replace(/<\/em>/g,'');
 
-  let rows = '';
-  QUESTIONS.forEach((q, i) => {
-    const student = answers[i];
-    const isCorrect = student === q.ans;
-    const studentAnswer = student !== null ? q.opts[student] : 'Not answered';
-    const correctAnswer = q.opts[q.ans];
-    const icon = isCorrect ? '✅' : '❌';
-    const rowBg = isCorrect ? '#d4f5e2' : '#ffe0f0';
-    const borderColor = isCorrect ? '#1A7D42' : '#D61680';
-    const plainQ = q.q.replace(/<em>/g, '').replace(/<\/em>/g, '');
-
-    // Generate inline clock SVG for the corrections if the question had one
-    let clockSVG = '';
-    if (q.clock) {
-      clockSVG = `<div style="text-align:center;margin:8px 0">${makeClock(q.clock[0], q.clock[1], 100)}</div>`;
+    let clockSVG='';
+    if(q.clock){
+      clockSVG=`<div style="text-align:center;margin:8px 0;display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap">${makeClock(q.clock[0],q.clock[1],100)}${q.digital?`<div style="background:#1A1A2E;color:#6ee7b7;font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:900;padding:.4rem 1rem;border-radius:10px;border:2px solid #334155">${String(q.digital[0]).padStart(2,'0')}:${String(q.digital[1]).padStart(2,'0')}</div>`:''}</div>`;
     }
 
-    rows += `
-      <div style="border:2px solid ${borderColor};border-radius:16px;padding:14px 18px;margin-bottom:12px;background:${rowBg};page-break-inside:avoid">
+    rows+=`
+      <div style="border:2px solid ${bc};border-radius:16px;padding:14px 18px;margin-bottom:12px;background:${rowBg};page-break-inside:avoid">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px">
           <div style="display:flex;align-items:center;gap:10px">
-            <span style="background:${isCorrect ? '#1A7D42' : '#D61680'};color:#fff;border-radius:8px;padding:3px 10px;font-weight:800;font-size:13px;font-family:'Baloo 2',cursive;white-space:nowrap">Q${i + 1}</span>
+            <span style="background:${bc};color:#fff;border-radius:8px;padding:3px 10px;font-weight:800;font-size:13px;font-family:'Baloo 2',cursive;white-space:nowrap">Q${i+1}</span>
             <span style="font-weight:700;font-size:14px;color:#1A1A2E;line-height:1.4">${plainQ}</span>
           </div>
           <span style="font-size:1.4rem;flex-shrink:0">${icon}</span>
         </div>
         ${clockSVG}
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">
-          <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:5px 12px;font-size:13px;font-weight:700">
-            <span style="color:#64748B">Your answer:</span>
-            <span style="color:${isCorrect ? '#1A7D42' : '#D61680'};margin-left:4px">${studentAnswer}</span>
-          </div>
-          ${!isCorrect ? `<div style="background:rgba(255,255,255,.7);border-radius:8px;padding:5px 12px;font-size:13px;font-weight:700"><span style="color:#64748B">Correct answer:</span><span style="color:#1A7D42;margin-left:4px">${correctAnswer}</span></div>` : ''}
+          <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:5px 12px;font-size:13px;font-weight:700"><span style="color:#64748B">Your answer:</span><span style="color:${bc};margin-left:4px">${studentAnswer}</span></div>
+          ${!isCorrect?`<div style="background:rgba(255,255,255,.7);border-radius:8px;padding:5px 12px;font-size:13px;font-weight:700"><span style="color:#64748B">Correct answer:</span><span style="color:#1A7D42;margin-left:4px">${correctAnswer}</span></div>`:''}
         </div>
-        ${!isCorrect ? `<div style="margin-top:8px;background:rgba(255,255,255,.6);border-radius:8px;padding:8px 12px;font-size:13px;color:#1A1A2E;font-weight:600;border-left:4px solid #1A7D42"><span style="color:#1A7D42;font-weight:800">💡 Explanation: </span>${q.expl}</div>` : `<div style="margin-top:6px;font-size:13px;color:#1A7D42;font-weight:700">🌟 Well done! Keep it up!</div>`}
-      </div>
-    `;
+        ${!isCorrect?`<div style="margin-top:8px;background:rgba(255,255,255,.6);border-radius:8px;padding:8px 12px;font-size:13px;color:#1A1A2E;font-weight:600;border-left:4px solid #1A7D42"><span style="color:#1A7D42;font-weight:800">💡 Explanation: </span>${q.expl}</div>`:`<div style="margin-top:6px;font-size:13px;color:#1A7D42;font-weight:700">🌟 Well done! Keep it up!</div>`}
+      </div>`;
   });
 
-  const corrHTML = `<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><title>Corrections — ${studentName} — Time Measurement</title>
+  const corrHTML=`<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><title>Corrections — ${studentName} — Time Measurement</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Nunito',sans-serif;background:#F5F7FF;color:#1A1A2E;padding:0}@media print{body{background:#fff}}</style></head><body>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Nunito',sans-serif;background:#F5F7FF;color:#1A1A2E}@media print{body{background:#fff}}</style></head><body>
 <div style="max-width:800px;margin:0 auto;padding:24px">
   <div style="background:linear-gradient(135deg,#1B2B6B,#2A3F9F);border-radius:20px;padding:24px 28px;margin-bottom:20px;color:#fff">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
@@ -1085,35 +660,33 @@ function downloadCorrections() {
       <div style="background:rgba(214,22,128,.3);border-radius:10px;padding:8px 14px;font-size:13px"><span style="opacity:.85">❌ To Review: </span><strong>${wrongCount}</strong></div>
     </div>
   </div>
-  <div style="background:#EEF2FF;border-radius:14px;padding:14px 18px;margin-bottom:18px;border:2px solid #c7d2fe;font-size:14px;color:#1B2B6B;font-weight:700">📌 Below are all 15 questions with your answers and explanations. Study the ones marked ❌ carefully and discuss with your teacher! 🌟</div>
+  <div style="background:#EEF2FF;border-radius:14px;padding:14px 18px;margin-bottom:18px;border:2px solid #c7d2fe;font-size:14px;color:#1B2B6B;font-weight:700">📌 Below are all 15 questions with your answers and explanations. Each answer is shown in words, digital and on a clock! Study the ones marked ❌ carefully. 🌟</div>
   ${rows}
   <div style="background:linear-gradient(135deg,#1B2B6B,#2A3F9F);border-radius:16px;padding:20px;margin-top:8px;color:#fff;page-break-inside:avoid">
-    <div style="font-family:'Baloo 2',cursive;font-size:16px;font-weight:800;margin-bottom:14px">🕐 Time Quick Reference</div>
+    <div style="font-family:'Baloo 2',cursive;font-size:16px;font-weight:800;margin-bottom:14px">🕐 Time Quick Reference — Three Ways to Show Time</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
       ${[
-        { title: 'O\'clock', desc: 'Minute hand on 12', eg: '3:00 = 3 o\'clock' },
-        { title: 'Half past', desc: 'Minute hand on 6 (30 min)', eg: '6:30 = half past 6' },
-        { title: 'Quarter past', desc: 'Minute hand on 3 (15 min)', eg: '9:15 = quarter past 9' },
-        { title: 'Quarter to', desc: 'Minute hand on 9 (45 min)', eg: '2:45 = quarter to 3' },
-        { title: '60 seconds', desc: '= 1 minute', eg: '' },
-        { title: '60 minutes', desc: '= 1 hour', eg: '' },
-        { title: '24 hours', desc: '= 1 day', eg: '' },
-        { title: '5-min intervals', desc: 'Each number = 5 minutes', eg: '2 = 10 min, 4 = 20 min' },
-      ].map(s => `
+        {title:"O'clock",words:"3 o'clock",digital:"3:00",desc:"Minute hand on 12"},
+        {title:"Half past",words:"Half past 6",digital:"6:30",desc:"Minute hand on 6"},
+        {title:"Quarter past",words:"Quarter past 9",digital:"9:15",desc:"Minute hand on 3"},
+        {title:"Quarter to",words:"Quarter to 3",digital:"2:45",desc:"Minute hand on 9"},
+        {title:"5-min intervals",words:"20 past 4",digital:"4:20",desc:"Each number = 5 min"},
+        {title:"Past vs To",words:"25 to 8",digital:"7:35",desc:"After 30 min → use 'to'"},
+        {title:"60 seconds",words:"One minute",digital:"—",desc:"= 1 minute"},
+        {title:"24 hours",words:"One full day",digital:"—",desc:"= 1 complete day"},
+      ].map(s=>`
         <div style="background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:12px;padding:10px 12px">
           <div style="font-weight:800;font-size:13px;margin-bottom:4px">${s.title}</div>
-          <div style="font-size:11px;opacity:.85;line-height:1.5">${s.desc}${s.eg ? `<br/><em style="opacity:.7">${s.eg}</em>` : ''}</div>
-        </div>
-      `).join('')}
+          <div style="font-size:11px;opacity:.85;line-height:1.6">${s.desc}<br/><em style="opacity:.7">Words: ${s.words}</em><br/><em style="opacity:.7">Digital: ${s.digital}</em></div>
+        </div>`).join('')}
     </div>
   </div>
-  <div style="text-align:center;margin-top:18px;color:#64748B;font-size:12px;font-weight:600">Whyte Pyramid Academy — Year 3 Maths — Time Measurement Assignment © ${new Date().getFullYear()} &nbsp;|&nbsp; Keep practising and you'll be a Time Expert! 🌟</div>
+  <div style="text-align:center;margin-top:18px;color:#64748B;font-size:12px;font-weight:600">Whyte Pyramid Academy — Year 3 Maths — Time Measurement © ${new Date().getFullYear()} &nbsp;|&nbsp; Keep practising! 🌟</div>
 </div></body></html>`;
 
-  const win = window.open('', '_blank', 'width=900,height=700');
-  win.document.write(corrHTML);
-  win.document.close();
-  win.onload = () => { win.focus(); win.print(); };
+  const win=window.open('','_blank','width=900,height=700');
+  win.document.write(corrHTML);win.document.close();
+  win.onload=()=>{win.focus();win.print()};
 }
 </script>
 </body>
